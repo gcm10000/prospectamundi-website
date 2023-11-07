@@ -1,0 +1,63 @@
+.cardaboutus {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 12px;
+    transition: background 0.3s;
+    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.cardaboutus:hover {
+    background: rgb(230, 230, 230);
+}
+
+.cardaboutus--titlesection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+}
+
+.cardaboutus h2 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.cardaboutus span {
+    text-align: center;
+}
+
+.cardaboutus .text {
+    display: flex;
+    flex-direction: column;
+    max-width: 22vw;
+}
+
+.icon {
+    font-size: 4em;
+}
+
+  @media screen and (max-width: 960px) {
+    .icon {
+        font-size: 3.5em;
+    }
+
+    .cardaboutus .text {
+        max-width: 100%;
+    }
+    
+  }
+
+  @media screen and (max-width: 425px) {
+    .icon {
+        font-size: 2em;
+    }
+
+    .cardaboutus h2 {
+        text-align: center;
+        font-size: 2rem;
+    }
+  }

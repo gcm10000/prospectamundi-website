@@ -1,0 +1,47 @@
+.home--contactSection {
+    background-color: #33343F;
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.home--contactSection > div {
+    width: 40vw;
+    margin: auto;
+}
+
+.home--contactSection > div > h2 {
+    font-weight: 200;
+    line-height: 1.2em;
+    font-size: 2em;
+}
+
+.home--contactSection button {
+    margin-top: 40px;
+}
+
+.fade-enter {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+  }
+  
+
+@media screen and (max-width: 960px) {
+    .home--contactSection > div {
+        width: 80vw;
+    }
+  }

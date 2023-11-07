@@ -1,0 +1,26 @@
+.aboutus--card {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 12px;
+    transition: background 0.3s;
+    padding: 5px;
+}
+
+.aboutus--card:hover {
+    background: rgb(230, 230, 230);
+}
+
+.aboutus--card h2 {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.aboutus--card span {
+    text-align: center;
+}
+
+.aboutus--card .text {
+    display: flex;
+    flex-direction: column;
+}

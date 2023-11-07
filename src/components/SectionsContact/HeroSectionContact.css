@@ -1,0 +1,222 @@
+video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+  }
+  
+  .hero-container {
+    /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+  }
+  
+  .hero-container > h1 {
+    color: #fff;
+    font-size: 100px;
+    margin-top: -100px;
+  }
+  
+  .hero-container > p {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 32px;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif; */
+      font-family: 'DM Sans', sans-serif;
+  }
+  
+  .hero-btns {
+    margin-top: 32px;
+  }
+  
+  .hero-btns .btn {
+    margin: 6px;
+  }
+  
+  .fa-play-circle {
+    margin-left: 4px;
+  }
+
+  .contact--content {
+    color: white;
+    display: flex;
+    width: 70vw;
+    justify-content: space-around;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .contact--content--form {
+    background-color: #ffffff33;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 3px solid white;
+    border: 0;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 80px;
+  }
+
+  .contact--content--form--aboutus {
+    width: 28vw;
+    background: center;
+  }
+
+  .contact--content--form h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 200;
+    font-size: 3rem;
+  }
+
+  .contact--content--form--partOne {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+  }
+  
+  .contact--content--form .form-group-name {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .contact--content--form .form-group-name input {
+    width: 100%;
+  }
+
+  .contact--content--form input {
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 2em;
+    color: #fff;
+    border-color: #fff;
+
+    transition: color .27s ease-out,background-color .27s ease-out,border-color .27s ease-out;
+  }
+
+  ::placeholder {
+    color: #fff;
+    opacity: 1;
+  }
+
+  .contact--content--form textarea {
+    margin-top: 40px !important;
+    height: 148px;
+    margin-top: 25px;
+    padding: 14px 20px;
+    background-color: transparent;
+    border: 1px solid white;
+    width: 100%;
+    outline: 0;
+    color: white;
+    resize: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .form--submit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    width: auto;
+    /* margin: 0; */
+    margin-top: 15px;
+
+    font-family: "Dm Sans",sans-serif;
+    font-size: 15px;
+    line-height: 2em;
+    font-weight: 400;
+    text-decoration: none;
+    outline: 0;
+    transition: color .27s ease-out,background-color .27s ease-out,border-color .27s ease-out;
+    padding: 6px 33px 7px;
+    color: #fff;
+    background-color: #20282d;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    --qode-hover-move-x: 110%;
+    --qode-hover-move-y: 100%;
+    cursor: pointer;
+  }
+  .form--submit span {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  @media screen and (max-width: 1390px) {
+    .contact--content--form--aboutus {
+      width: 60vw;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .contact--content--form {
+      width: 60vw;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .hero-container > h1 {
+      font-size: 70px;
+      margin-top: -150px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .hero-container > h1 {
+      font-size: 50px;
+      margin-top: -100px;
+    }
+  
+    .hero-container > p {
+      font-size: 30px;
+    }
+  
+    .btn-mobile {
+      display: block;
+      text-decoration: none;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 530px) {
+    .contact--content--form {
+      width: 100vw;
+    }
+  }
+
+@media screen and (max-width: 425px) {
+    .contact--content--form .form-group-name {
+        flex-direction: column;
+        gap: 30px;
+
+    }
+
+    .contact--content {
+      width: 100vw;
+    }
+
+  .contact--content--form--aboutus {
+      width: 100vw;
+  }
+}
