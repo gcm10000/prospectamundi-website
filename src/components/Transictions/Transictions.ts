@@ -1,10 +1,11 @@
+"use client"
 
 function setup(){
 
     const faders = document.querySelectorAll(".fade-in");
     const fadersWithDelay = document.querySelectorAll(".fade-in-with-delay");
     const sliders = document.querySelectorAll(".slide-in");
-
+        
     const appearOptions = {
     threshold: 0,
     rootMargin: "0px 0px -250px 0px"

@@ -10,6 +10,10 @@ import { useEffect } from 'react'
 
 function HomeLayout() {
     useEffect(() => {
+        window.addEventListener("load", (event) => {
+            setup();
+            //console.log("page is fully loaded");
+        });
         setup();
     }, 
     []);

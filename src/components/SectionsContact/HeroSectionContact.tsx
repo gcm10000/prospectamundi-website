@@ -1,23 +1,29 @@
-import '../../App.css';
+"use client"
+
+// import '../../App.css';
 import './HeroSectionContact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare }  from '@fortawesome/free-solid-svg-icons';
 import SectionWithBlur, { Position } from '../SectionWithBlur/SectionWithBlur';
 import { useState, useEffect, FormEvent } from 'react';
-import contactClient from '../../network/lib/contactClient'
+import contactClient from '@/network/lib/contactClient'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import CookieHelper from '../../helpers/CookieHelper';
 
 //Adicionar captcha v3 também
 function HeroSectionContact() {
-  const trackId = CookieHelper().getCookie('trackId');
-  const MySwal = withReactContent(Swal);
   const [text, setText] = useState('');
   const [textareaAvaliable, setTextareaAvaliable] = useState(false);
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const q = urlParams.get("q");
+
+  let trackId : string | null = null;
+  
+  useEffect(() => {
+    trackId = CookieHelper().getCookie('trackId');
+  }, []);
+
+  const MySwal = withReactContent(Swal);
+
   const textsToType : string[] = [
     "  Estou interessado no serviço 'Estratégia de Pré-vendas' e gostaria de marcar um horário.",
     "  Estou interessado no serviço 'Análise de Funil de Vendas' e gostaria de marcar um horário.",
@@ -25,10 +31,20 @@ function HeroSectionContact() {
     "  Estou interessado no serviço 'Banco de Talentos de SDR' e gostaria de marcar um horário."
   ];
 
-  const indexTextToType = Number(q);
-  const textToType = textsToType[indexTextToType];
   let index = 0;
 
+  function getTextToType() : string | null {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const q = urlParams.get("q");
+    if (!q)
+      return null;
+
+    const indexTextToType = Number(q);
+    const textToType = textsToType[indexTextToType];
+
+    return textToType;
+  }
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (textareaAvaliable)
       setText(event.target.value);
@@ -36,7 +52,8 @@ function HeroSectionContact() {
 
 
   useEffect(() => {
-    if (!q){
+    const textToType = getTextToType();
+    if (!textToType){
       setTextareaAvaliable(true);
       return;
     }
@@ -47,8 +64,8 @@ function HeroSectionContact() {
         index++;
       }
       else {
-        setText(textToType.trim());
         setTextareaAvaliable(true);
+        clearInterval(typingInterval);
       }
     };
 

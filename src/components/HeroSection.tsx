@@ -20,7 +20,6 @@ function HeroSection() {
           GET STARTED
         </Button> */}
         <Button
-          className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
           to="/contato"

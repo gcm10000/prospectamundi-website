@@ -1,3 +1,5 @@
+"use client"
+
 function CookieHelper() {
 
     function getCookie(nome: string) {

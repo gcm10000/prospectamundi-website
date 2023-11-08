@@ -1,8 +1,8 @@
-import React from 'react';
+import AboutLayout from "./layout";
 
 function About() {
   return (
-    <div>Hello About</div>
+    <AboutLayout></AboutLayout>
   )
 }
 

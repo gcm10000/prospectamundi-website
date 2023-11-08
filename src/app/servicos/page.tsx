@@ -1,9 +1,10 @@
 import React from 'react'
+import ServicesLayout from './layout';
 
-function Servicos() {
+function Services() {
   return (
-    <div>Servicos</div>
+    <ServicesLayout></ServicesLayout>
   )
 }
 
-export default Servicos;
+export default Services;
