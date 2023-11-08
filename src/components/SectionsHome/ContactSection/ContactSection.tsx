@@ -10,7 +10,6 @@ function ContactSection() {
         <div className='fade-in'>
             <h2>Se deseja maiores informações sobre nossos recursos, entre em contato agora mesmo.</h2>
         <Button
-            className='btns'
             buttonStyle='btn--outline'
             buttonSize='btn--large'
             to="/contato"
