@@ -6,6 +6,9 @@ import Navbar from '@/components/Navbar'
 import Backdrop from './backdrop'
 import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
+import AnalyticsComponent from '@/components/AnalyticsComponent';
+import { usePathname } from 'next/navigation';
+
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +23,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-
   return (
     <html lang="pt-br">
       <head>
@@ -33,6 +35,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <AnalyticsComponent></AnalyticsComponent>
         <Navbar></Navbar>
         {children}
         <Backdrop />

@@ -1,16 +1,21 @@
+"use client"
+
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import CookieHelper from './../helpers/CookieHelper'
+import { usePathname } from 'next/navigation';
 
 
-const AnalyticsComponent : React.FC = () => {
-  const { pathname } = useRouter();
+export interface AnalyticsComponentProps {
+  pathname: string;
+}
 
-  const analyticEndPoint = process.env.REACT_APP_ANALYTIC_ENDPOINT || '';
-  const enterRequestEndPoint = process.env.REACT_APP_ENTER_REQUEST_ENDPOINT || '';
-  const updateRequestEndPoint = process.env.REACT_APP_UPDATE_REQUEST_ENDPOINT || '';
+export function AnalyticsComponent() {
+  const pathname = usePathname();
+  
+  const analyticEndPoint = process.env.NEXT_PUBLIC_APP_ANALYTIC_ENDPOINT || '';
+  const enterRequestEndPoint = process.env.NEXT_PUBLIC_APP_ENTER_REQUEST_ENDPOINT || '';
+  const updateRequestEndPoint = process.env.NEXT_PUBLIC_APP_UPDATE_REQUEST_ENDPOINT || '';
 
-  const currentURL = window.location.href;
   const seconds = 60;
   let requestId: string | null = null;
   const cookieHelper = CookieHelper();
@@ -21,9 +26,14 @@ const AnalyticsComponent : React.FC = () => {
 
     const trackIdFromCookies = cookieHelper.getCookie('trackId');
     if (trackIdFromCookies === null) {
+      const currentURL = window.location.href;
       const operatingSystem = getOS();
       const dataAnalytic = await getDataAnalytic(currentURL, operatingSystem);
-      debugger;
+      
+      if (!dataAnalytic) {
+        console.error("Analytic aborted.");
+        return;
+      }
       const trackId = dataAnalytic.trackId;
       setCookie('trackId', trackId, 365);
       requestId = dataAnalytic.requestId;
@@ -37,6 +47,7 @@ const AnalyticsComponent : React.FC = () => {
   };
 
   const sendEnterRequest = async () => {
+    const currentURL = window.location.href;
     const trackId = cookieHelper.getCookie('trackId');
     const request = {
       URL: currentURL,
@@ -82,6 +93,7 @@ const AnalyticsComponent : React.FC = () => {
   };
 
   const sendUpdateRequest = async () => {
+    const currentURL = window.location.href;
     const request = {
       URL: currentURL,
       RequestId: requestId,
