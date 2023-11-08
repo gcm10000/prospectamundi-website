@@ -13,7 +13,6 @@ function HeroSection() {
       <h2 style={{textAlign: 'center', fontWeight: 200}}>Auxiliamos empresas em seu crescimento exponencial</h2>
       <div className='hero-btns'>
         {/* <Button
-          className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
