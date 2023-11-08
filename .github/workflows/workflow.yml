@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push: 
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        # - uses: actions/setup-node@v2
+      - name: Set up SSH key
+        run: |
+            mkdir -p ~/.ssh
+            echo "$SSH_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -t rsa $SSH_HOST >> ~/.ssh/known_hosts
+        env:
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            SSH_KEY: ${{ secrets.SSH_KEY }}
+    
+    
+      - name: Build Docker image
+        run: docker build -t prospectamundi_front_image -f ./Dockerfile .
+
+      - name: Try to create a new folder
+        run: ssh $SSH_USERNAME@$SSH_HOST "mkdir -p downloads"
+        env:
+            SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+
+      - name: Try to remove an old image
+        run: ssh $SSH_USERNAME@$SSH_HOST "rm -f /home/ubuntu/apps/downloads/prospectamundi_front_image.tar"
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+      
+      - name: Push Docker image to server
+        run: |
+            docker save -o prospectamundi_front_image.tar prospectamundi_front_image
+            scp prospectamundi_front_image.tar $SSH_USERNAME@$SSH_HOST:/home/ubuntu/apps/downloads/prospectamundi_front_image.tar
+            ssh $SSH_USERNAME@$SSH_HOST "sudo docker load -i /home/ubuntu/apps/downloads/prospectamundi_front_image.tar"
+        env:
+            SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            nome_da_imagem: prospectamundi/prospectamundi_front_image
+            tag: latest
+
+      - name: Deploy the image to container
+        run: ssh $SSH_USERNAME@$SSH_HOST "sudo docker compose -f ./apps/docker-compose.yml up -d prospectamundi_front"
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
