@@ -127,7 +127,9 @@ export function AnalyticsComponent() {
     onLoad();
   }, [pathname]);
 
-  window.addEventListener('beforeunload', sendUpdateRequest);
+  useEffect(() => {
+    window.addEventListener('beforeunload', sendUpdateRequest);
+  }, []);
 
   function setCookie(nome: string, valor: any, diasParaExpirar: number) {
         var data = new Date();
