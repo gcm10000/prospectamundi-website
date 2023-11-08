@@ -48,6 +48,15 @@ jobs:
             nome_da_imagem: prospectamundi/prospectamundi_front_image
             tag: latest
 
+      - name: Try to stop and remove old container
+        run: |
+            ssh $SSH_USERNAME@$SSH_HOST "sudo docker stop prospectamundi_front"
+            ssh $SSH_USERNAME@$SSH_HOST "sudo docker rm prospectamundi_front"
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+ 
+
       - name: Deploy the image to container
         run: ssh $SSH_USERNAME@$SSH_HOST "sudo docker compose -f ./apps/docker-compose.yml up -d prospectamundi_front"
         env:
