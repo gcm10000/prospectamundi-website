@@ -15,7 +15,6 @@ function OurServices({ reff }: OurServicesProps) {
   function cardButtonFactory(index: number) {
     const cardButton = <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                             <Button
-                              className='btns'
                               buttonStyle='form--submit'
                               buttonSize='btn--large'
                               to={`/contato?q=${index}`}
