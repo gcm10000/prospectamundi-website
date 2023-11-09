@@ -37,7 +37,7 @@ export function logoff() {
 }
 
 const axiosClient = axios.create({
-    baseURL: process.env.VITE_REACT_APP_BASE_URL_API
+    baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL_API
   });
 
   axiosClient.interceptors.request.use(config => {

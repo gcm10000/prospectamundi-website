@@ -21,7 +21,7 @@ export function AnalyticsComponent() {
   const cookieHelper = CookieHelper();
 
   const onLoad = async () => {
-    if (process.env.VITE_REACT_APP_ENVIRONMENT == 'DEVELOPMENT')
+    if (process.env.NEXT_PUBLIC_APP_ENVIRONMENT == 'DEVELOPMENT')
       deleteCookie('trackId');
 
     const trackIdFromCookies = cookieHelper.getCookie('trackId');

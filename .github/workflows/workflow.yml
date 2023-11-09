@@ -50,8 +50,7 @@ jobs:
 
       - name: Try to stop and remove old container
         run: |
-            ssh $SSH_USERNAME@$SSH_HOST "sudo docker stop prospectamundi_front"
-            ssh $SSH_USERNAME@$SSH_HOST "sudo docker rm prospectamundi_front"
+            ssh $SSH_USERNAME@$SSH_HOST "sudo docker stop prospectamundi_front || true && sudo docker rm prospectamundi_front || true"
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
