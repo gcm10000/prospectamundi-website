@@ -1,6 +1,6 @@
 "use client"
 
-import { setAutoHideBackdrop, setAutoShowBackdrop } from '@/layouts/AutoBackdrop';
+import AutoBackdrop, { setAutoHideBackdrop, setAutoShowBackdrop } from '@/layouts/AutoBackdrop';
 import React, { useEffect, useState } from 'react'
 
 function Backdrop() {
@@ -19,7 +19,9 @@ function Backdrop() {
     }, []);
 
   return (
-    <></>
+    <>
+      <AutoBackdrop open={showBackdrop} />
+    </>
   )
 }
 
