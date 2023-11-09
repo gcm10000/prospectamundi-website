@@ -31,29 +31,32 @@ jobs:
             SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
             SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Try to remove an old image
+      - name: Try to remove an old compacted image
         run: ssh $SSH_USERNAME@$SSH_HOST "rm -f /home/ubuntu/apps/downloads/prospectamundi_front_image.tar"
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
       
-      - name: Push Docker image to server
-        run: |
-            docker save -o prospectamundi_front_image.tar prospectamundi_front_image
-            scp prospectamundi_front_image.tar $SSH_USERNAME@$SSH_HOST:/home/ubuntu/apps/downloads/prospectamundi_front_image.tar
-            ssh $SSH_USERNAME@$SSH_HOST "sudo docker load -i /home/ubuntu/apps/downloads/prospectamundi_front_image.tar"
-        env:
-            SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-            SSH_HOST: ${{ secrets.SSH_HOST }}
-            nome_da_imagem: prospectamundi/prospectamundi_front_image
-            tag: latest
-
+      
       - name: Try to stop and remove old container
         run: |
             ssh $SSH_USERNAME@$SSH_HOST "sudo docker stop prospectamundi_front || true && sudo docker rm prospectamundi_front || true"
         env:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
+
+
+      - name: Push Docker image to server
+        run: |
+            docker save -o prospectamundi_front_image.tar prospectamundi_front_image
+            scp prospectamundi_front_image.tar $SSH_USERNAME@$SSH_HOST:/home/ubuntu/apps/downloads/prospectamundi_front_image.tar
+            ssh $SSH_USERNAME@$SSH_HOST "sudo docker rmi prospectamundi_front_image || true"
+            ssh $SSH_USERNAME@$SSH_HOST "sudo docker load -i /home/ubuntu/apps/downloads/prospectamundi_front_image.tar"
+        env:
+            SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            nome_da_imagem: prospectamundi/prospectamundi_front_image
+            tag: latest
  
 
       - name: Deploy the image to container
