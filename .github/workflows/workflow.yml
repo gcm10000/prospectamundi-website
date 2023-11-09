@@ -1,32 +1,17 @@
 name: Deploy on Merge to Main
 
 on:
-  pull_request:
+  pull_request_target:
     types:
       - closed
 
 jobs:
-  if_merged_to_main:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Check if PR is approved
-        id: check_approval
-        uses: reviewdog/action-check-approval@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check if PR is from the same repository
-        id: check_fork
-        run: echo ::set-output name=from_fork::${{ github.event.pull_request.head.repo.full_name != github.repository }}
-
-      - name: Exit if PR is not approved or from a fork
-        run: |
-          if [ "${{ steps.check_approval.outputs.approved }}" != 'true' ] || [ "${{ steps.check_fork.outputs.from_fork }}" == 'true' ]; then
-            echo "PR is not approved or from a fork. Exiting."
-            exit 0
-          fi
-
+      - run: |
+          echo The PR was merged
       - uses: actions/checkout@v2
         # - uses: actions/setup-node@v2
       - name: Set up SSH key
