@@ -10,8 +10,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Echo on merging to master
-        if: ${{ github.ref == 'refs/heads/master' }}
+      - name: Echo on merging to main
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: echo "I'm merging!"
       - run: |
           echo The PR was merged
