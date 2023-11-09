@@ -16,12 +16,6 @@ function HeroSectionContact() {
   const [text, setText] = useState('');
   const [textareaAvaliable, setTextareaAvaliable] = useState(false);
 
-  let trackId : string | null = null;
-  
-  useEffect(() => {
-    trackId = CookieHelper().getCookie('trackId');
-  }, []);
-
   const MySwal = withReactContent(Swal);
 
   const textsToType : string[] = [
@@ -79,6 +73,9 @@ function HeroSectionContact() {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const trackId = CookieHelper().getCookie('trackId');
+    console.log('trackId', trackId);
+    
     if (trackId)
       formData.append('trackId', trackId);
 
