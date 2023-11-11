@@ -1,29 +1,24 @@
-# Use an official Node.js runtime as the base image
-FROM node:18-alpine AS base
+# Estágio de construção
+FROM node:18-alpine AS builder
 
-# Set the working directory in the container
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Expose the port on which your Next.js application runs
-EXPOSE 3000
-
-# Copy package.json and package-lock.json to the working directory
+# Copia os arquivos de configuração e as dependências para o contêiner
 COPY package*.json ./
-
-# Install project dependencies
 RUN npm install
 
-# Copy the rest of your application code to the working directory
+# Copia os arquivos do código-fonte para o contêiner
 COPY . .
 
-# Build the Next.js application
+# Constrói a aplicação Next.js
 RUN npm run build
 
-# Use uma imagem Nginx como base para servir a aplicação construída
+# Estágio de produção
 FROM nginx:alpine
 
-# Copie os arquivos construídos para o diretório padrão do Nginx
+# Copia os arquivos construídos do estágio de construção
 COPY --from=builder /app/out /usr/share/nginx/html
 
-# Exponha a porta 80
+# Expõe a porta 80
 EXPOSE 80
