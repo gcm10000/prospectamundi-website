@@ -18,3 +18,12 @@ COPY . .
 
 # Build the Next.js application
 RUN npm run build
+
+# Use uma imagem Nginx como base para servir a aplicação construída
+FROM nginx:alpine
+
+# Copie os arquivos construídos para o diretório padrão do Nginx
+COPY --from=builder /app/out /usr/share/nginx/html
+
+# Exponha a porta 80
+EXPOSE 80
