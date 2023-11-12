@@ -1,6 +1,5 @@
 "use client"
 
-// import '../../App.css';
 import './HeroSectionContact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare }  from '@fortawesome/free-solid-svg-icons';
@@ -10,12 +9,15 @@ import contactClient from '@/network/lib/contactClient'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import CookieHelper from '../../helpers/CookieHelper';
+import UploadInput from '../UploadInput';
+
 
 //Adicionar captcha v3 também
 function HeroSectionContact() {
   const [text, setText] = useState('');
   const [textareaAvaliable, setTextareaAvaliable] = useState(false);
   const [talentPoolChoose, setTalentPoolChoose] = useState<boolean>(false);
+  
 
   const MySwal = withReactContent(Swal);
 
@@ -75,10 +77,6 @@ function HeroSectionContact() {
       setTalentPoolChoose(event.target.checked);
   }
 
-  useEffect(() => {
-      
-  }, [talentPoolChoose]);
-
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget as HTMLFormElement);
@@ -119,20 +117,27 @@ function HeroSectionContact() {
                     </div>
                     <div className="form-group">
                         <input type="checkbox" name="isTalentPool" id="isTalentPool" onChange={handleChecked} checked={talentPoolChoose} />
-                        <label htmlFor="isTalentPool" style={{marginLeft: '8px'}}>Desejo me ingressar no banco de talentos</label>
+                        <label htmlFor="isTalentPool" style={{marginLeft: '8px', userSelect: 'none'}}>Desejo me ingressar no banco de talentos</label>
                     </div>
+                    <div className="form-group">
+                        <textarea 
+                            required
+                            placeholder='Mensagem' 
+                            value={text}
+                            name='message'
+                            onChange={(e) => {handleChange(e)}}>
+                        </textarea>                    
+                    </div>
+                    { talentPoolChoose && 
+                    <div className='form-group' style={{marginBottom: '8px'}}>
+                        <UploadInput 
+                            defaultStringUpload='Envie seu Currículo'
+                            allowedExtensions={['.doc', '.docx', '.pdf']}
+                            maxFileMegaBytesSize={3} />
+                    </div>
+                    }
               </div>
-              <textarea 
-                required
-                placeholder='Mensagem' 
-                value={text}
-                name='message'
-                onChange={(e) => {handleChange(e)}}></textarea>
-              { talentPoolChoose && 
-                
-                <input type="file" name="file" style={{display: 'block', marginTop: '12px'}} /> 
-                
-              }
+
               <button className="form--submit">
                   <span>Enviar</span> 
                   <FontAwesomeIcon style={{color: 'white', 'marginLeft': '7px'}} icon={faArrowUpRightFromSquare} />

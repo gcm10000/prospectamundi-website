@@ -4,6 +4,7 @@ video {
     height: 100%;
     position: fixed;
     z-index: -1;
+    top: 0;
   }
   
   .hero-container {
@@ -51,6 +52,7 @@ video {
     width: 70vw;
     justify-content: space-around;
     font-family: 'DM Sans', sans-serif;
+    padding-top: 80px;
   }
 
   .contact--content--form {
@@ -67,7 +69,6 @@ video {
     padding-bottom: 60px;
     padding-left: 50px;
     padding-right: 50px;
-    margin-top: 80px;
   }
 
   .contact--content--form--aboutus {
@@ -118,9 +119,9 @@ video {
   }
 
   .contact--content--form textarea {
-    margin-top: 40px !important;
+    /* margin-top: 40px !important; */
     height: 148px;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     padding: 14px 20px;
     background-color: transparent;
     border: 1px solid white;
