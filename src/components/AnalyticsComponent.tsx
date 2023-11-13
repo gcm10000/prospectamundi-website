@@ -145,13 +145,14 @@ export function AnalyticsComponent() {
     }
   
     async function getMyIP() {
-      const response = await fetch("http://meuip.com/api/meuip.php", {
-        method: 'POST',
+      debugger;
+      const response = await fetch("https://api.ipify.org?format=json", {
+        method: 'GET',
         redirect: 'follow'
       });
-      const result = await response.text();
 
-      return result;
+      const result = await response.json();
+      return result.ip;
     }
 
     async function getDataAnalytic(url: string, operatingSystem: string | null) {
