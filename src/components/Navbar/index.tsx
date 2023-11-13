@@ -18,7 +18,7 @@ function Navbar() {
         <div className='navbar-container'>
           <Link href='/' className='navbar-logo' onClick={closeMobileMenu}>
             &nbsp;
-            <img src="../images/logo.png" alt='Prospecta Mundi' className='navbar--imglogo' />
+            <img src="/images/logo.png" alt='Prospecta Mundi' className='navbar--imglogo' />
           </Link>
           <div className='menu-icon' onClick={handleClick}>
                 <FontAwesomeIcon style={{color: 'white'}} icon={click ? faTimes : faBars} />
