@@ -13,7 +13,7 @@ export interface ButtonProps {
     onClick?: MouseEventHandler | undefined;
     buttonStyle? : string; 
     buttonSize? : string;
-    to?: Url;
+    to?: Url | undefined;
 }
 
 export const Button = ({
@@ -30,7 +30,9 @@ export const Button = ({
     const checkButtonSize = SIZES.includes(buttonSize || '') ? buttonSize : SIZES[0];
 
     return (
-        <Link href={to || ''} className='btn-mobile' style={{fontSize: '0px'}}>
+    <>
+    { to && 
+        <Link href={to} className='btn-mobile' style={{fontSize: '0px'}}>
             <button
             className={`btn ${checkButtonStyle} ${checkButtonSize}`}
             onClick={onClick}
@@ -38,7 +40,18 @@ export const Button = ({
             >
                 {children}
             </button>
-
-        </Link>
+        </Link>    
+    }
+    {
+        !to && 
+        <button
+        className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+        onClick={onClick}
+        type={type}
+        >
+            {children}
+        </button>
+    }
+    </>
     )
 }

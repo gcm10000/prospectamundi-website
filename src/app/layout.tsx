@@ -7,10 +7,7 @@ import Backdrop from './backdrop'
 import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
 import AnalyticsComponent from '@/components/AnalyticsComponent';
-import { usePathname } from 'next/navigation';
 
-
-// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Consultoria de Pré-Vendas Prospecta Mundi',
