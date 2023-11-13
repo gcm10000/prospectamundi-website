@@ -21,7 +21,7 @@ function AboutLayout() {
           <SectionWithBlur 
             title='Temos em Primeira Mão a Solução para as Dores da Jornada de Vendas' 
             position={Position.Left}>
-            <p style={{lineHeight: '1.9rem'}}>A Prospecta Mundi, uma consultoria especializada em pré-vendas, tem como missão oferecer sua vasta expertise em pré-vendas, empregando as mais eficazes práticas e metodologias comprovadas. Nossa estratégia visa à identificação de leads qualificados de alta qualidade, permitindo-nos alcançar resultados concretos e otimizar o potencial de vendas da sua empresa.</p>
+            <p style={{lineHeight: '1.9rem'}}>A Prospecta Mundi, uma consultoria especializada em vendas, tem como missão oferecer sua vasta expertise em vendas, empregando as mais eficazes práticas e metodologias comprovadas. Nossa estratégia visa à identificação de leads qualificados de alta qualidade, permitindo-nos alcançar resultados concretos e otimizar o potencial de vendas da sua empresa.</p>
             <p style={{marginTop: '30px'}}>
                 <Button
                   buttonStyle='btn--outline'

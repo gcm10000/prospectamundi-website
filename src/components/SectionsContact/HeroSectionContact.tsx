@@ -23,10 +23,10 @@ function HeroSectionContact() {
   const MySwal = withReactContent(Swal);
 
   const textsToType : string[] = [
-    "  Estou interessado no serviço 'Estratégia de Pré-vendas' e gostaria de marcar um horário.",
+    "  Estou interessado no serviço 'Estratégia de Vendas' e gostaria de marcar um horário.",
     "  Estou interessado no serviço 'Análise de Funil de Vendas' e gostaria de marcar um horário.",
     "  Estou interessado no serviço 'Qualificação de Leads' e gostaria de marcar um horário.",
-    "  Estou interessado no serviço 'Banco de Talentos de SDR' e gostaria de marcar um horário.",
+    "  Estou interessado no serviço 'Banco de Talentos' e gostaria de marcar um horário.",
     "  Quero participar do 'Banco de Talentos'."
   ];
 

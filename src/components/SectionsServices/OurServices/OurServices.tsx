@@ -29,7 +29,7 @@ function OurServices({ reff }: OurServicesProps) {
 const card1Array : Card1Props[] = [
     {
       icon: faBullseye,
-      title: 'Estratégias de Pré-Vendas',
+      title: 'Estratégias de Vendas',
       description: 'Estratégias personalizadas para impulsionar suas vendas.',
       footer: cardButtonFactory(0)
     },
