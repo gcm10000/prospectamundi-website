@@ -26,7 +26,8 @@ function HeroSectionContact() {
     "  Estou interessado no serviço 'Estratégia de Pré-vendas' e gostaria de marcar um horário.",
     "  Estou interessado no serviço 'Análise de Funil de Vendas' e gostaria de marcar um horário.",
     "  Estou interessado no serviço 'Qualificação de Leads' e gostaria de marcar um horário.",
-    "  Estou interessado no serviço 'Banco de Talentos de SDR' e gostaria de marcar um horário."
+    "  Estou interessado no serviço 'Banco de Talentos de SDR' e gostaria de marcar um horário.",
+    "  Quero participar do 'Banco de Talentos'."
   ];
 
   let index = 0;
@@ -109,6 +110,9 @@ function HeroSectionContact() {
       MySwal.fire({
         title: <strong>Sucesso!</strong>,
         html: <p>Mensagem enviado com sucesso e logo entraremos em contato com você!</p>,
+        buttonsStyling: false,
+        showCancelButton: false,
+        confirmButtonText: <Button>Entendido</Button>,
         icon: 'success'
       });
     }

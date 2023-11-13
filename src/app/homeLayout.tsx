@@ -22,8 +22,12 @@ function HomeLayout() {
     <>
       <HeroSection />
       <BenefitSection />
-      <ContactSection />
+      <ContactSection headline='Se deseja maiores informações sobre nossos recursos, entre em contato agora mesmo.' to='/contato' />
       <ProblemSolutionSection />
+      <ContactSection 
+            headline='Entre no banco de talentos!' 
+            to='/contato?q=4'
+            buttonText='Enviar Currículo' />
     </>
   )
 }
