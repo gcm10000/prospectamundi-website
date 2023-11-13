@@ -144,6 +144,15 @@ export function AnalyticsComponent() {
         document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
   
+    async function getMyIP() {
+      const response = await fetch("http://meuip.com/api/meuip.php", {
+        method: 'POST',
+        redirect: 'follow'
+      });
+      const result = await response.text();
+
+      return result;
+    }
 
     async function getDataAnalytic(url: string, operatingSystem: string | null) {
         var myHeaders = new Headers();
@@ -151,7 +160,8 @@ export function AnalyticsComponent() {
 
         var raw = JSON.stringify({
         "URL": url,
-        "operatingSystem": operatingSystem
+        "operatingSystem": operatingSystem,
+        "Ip": await getMyIP()
         });
 
         var requestOptions: RequestInit = {
