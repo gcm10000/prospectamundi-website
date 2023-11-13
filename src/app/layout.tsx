@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-import Head from 'next/head';
 import Navbar from '@/components/Navbar'
 import Backdrop from './backdrop'
 import FooterSection from '@/components/FooterSection'
@@ -10,9 +8,9 @@ import AnalyticsComponent from '@/components/AnalyticsComponent';
 
 
 export const metadata: Metadata = {
-  title: 'Consultoria de Pré-Vendas Prospecta Mundi',
-  description: 'Prospecta Mundi é uma consultoria de pré-vendas focada em outsourcing com as melhores práticas de vendas.'
-}
+  title: 'Consultoria de Vendas Prospecta Mundi',
+  description: 'Prospecta Mundi é uma consultoria de vendas com as melhores práticas de vendas.'
+};
 
 export default function RootLayout({
   children,
