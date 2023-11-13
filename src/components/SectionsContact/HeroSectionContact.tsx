@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import CookieHelper from '../../helpers/CookieHelper';
 import UploadInput from '../UploadInput';
+import { Button } from '../Button';
 
 
 //Adicionar captcha v3 também
@@ -79,7 +80,23 @@ function HeroSectionContact() {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
+    
     const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const file = formData.get('file') as File;
+    debugger;
+    if (file != null && file.size == 0 && talentPoolChoose) {
+      MySwal.fire({
+        title: <strong>Erro</strong>,
+        html: <p>Insira seu currículo e tente novamente.</p>,
+        icon: 'error',
+        buttonsStyling: false,
+        showCancelButton: false,
+        confirmButtonText: <Button>Entendido</Button>,
+      });
+      return;
+    };
+
     const trackId = CookieHelper().getCookie('trackId');
     console.log('trackId', trackId);
     
