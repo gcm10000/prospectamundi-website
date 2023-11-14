@@ -28,6 +28,15 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,100&display=swap"
           rel="stylesheet"
         />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHK3WWQML4"></script>
+        { process.env.NEXT_PUBLIC_APP_ENVIRONMENT == 'PRODUCTION' && 
+          <script type='text/javascript'>
+              window.dataLayer = window.dataLayer || [];
+              gtag('js', new Date());
+
+              gtag('config', 'G-EHK3WWQML4');
+        </script>
+        }
       </head>
       <body>
         <AnalyticsComponent></AnalyticsComponent>
