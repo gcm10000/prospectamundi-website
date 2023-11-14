@@ -40,6 +40,11 @@ function HeroSectionContact() {
       return null;
 
     const indexTextToType = Number(q);
+
+    if (indexTextToType == 4) {
+      setTalentPoolChoose(true);
+    }
+    
     const textToType = textsToType[indexTextToType];
 
     return textToType;
