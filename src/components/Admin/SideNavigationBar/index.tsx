@@ -1,60 +1,31 @@
-import React from 'react'
-import styles from './styles.module.css'
+"use client"
+
+import React, { useState } from 'react';
+import { SidebarData } from './SiderbarData';
+import './Navbar.css';
 
 function SideNavigationBar() {
+    const [sidebar, setSidebar] = useState(true);
+
+    const showSidebar = () => setSidebar(!sidebar);
+
   return (
-    <nav className={styles.sideNavigationBar}>
-        <div className="navbar">
-            <div className="logo">
-                <img src="/images/logo.png" alt="" />
-                <h1>jobs</h1>
-            </div>
-            <ul>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-user"></i>
-                        <span className="nav-item">Dashboard</span>
-                    </a>
+    <>
+        <nav className={sidebar ? 'vertical-nav-menu active' : 'vertical-nav-menu'}>
+          <ul className='vertical-nav-menu-items' onClick={showSidebar}>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <a href={item.path}>
+                    {item.icon}
+                    <span className='vertical-navbar-text'>{item.title}</span>
+                  </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-chart-bar"></i>
-                        <span className="nav-item">Analytics</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-tasks"></i>
-                        <span className="nav-item">Jobs Board</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fab fa-dochub"></i>
-                        <span className="nav-item">Documnents</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-cog"></i>
-                        <span className="nav-item">Setting</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-question-circle"></i>
-                        <span className="nav-item">Help</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="logout">
-                        <i className="fas fa-sign-out-alt"></i>
-                        <span className="nav-item">Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+              );
+            })}
+          </ul>
+        </nav>
+    </>
   )
 }
 

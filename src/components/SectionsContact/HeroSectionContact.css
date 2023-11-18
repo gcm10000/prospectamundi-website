@@ -21,7 +21,7 @@ video {
   
   .hero-container > h1 {
     color: #fff;
-    font-size: 100px;
+
     margin-top: -100px;
   }
   
@@ -129,35 +129,6 @@ video {
     outline: 0;
     color: white;
     resize: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .form--submit {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    width: auto;
-    /* margin: 0; */
-    margin-top: 15px;
-
-    font-family: "Dm Sans",sans-serif;
-    font-size: 15px;
-    line-height: 2em;
-    font-weight: 400;
-    text-decoration: none;
-    outline: 0;
-    transition: color .27s ease-out,background-color .27s ease-out,border-color .27s ease-out;
-    padding: 6px 33px 7px;
-    color: #fff;
-    background-color: #20282d;
-    border: 1px solid transparent;
-    border-radius: 25px;
-    --qode-hover-move-x: 110%;
-    --qode-hover-move-y: 100%;
-    cursor: pointer;
-  }
-  .form--submit span {
     font-family: 'DM Sans', sans-serif;
   }
 

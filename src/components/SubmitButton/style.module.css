@@ -1,0 +1,30 @@
+.submitButton {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    width: auto;
+    /* margin: 0; */
+
+    font-family: "Dm Sans",sans-serif;
+    font-size: 15px;
+    line-height: 2em;
+    font-weight: 400;
+    text-decoration: none;
+    outline: 0;
+    transition: color .27s ease-out,background-color .27s ease-out,border-color .27s ease-out;
+    padding: 6px 33px 7px;
+    color: #fff;
+    background-color: #20282d;
+    border: 1px solid transparent;
+    --qode-hover-move-x: 110%;
+    --qode-hover-move-y: 100%;
+    cursor: pointer;
+  }
+
+  .submitButtonBorderRadius {
+    border-radius: 25px;
+  }
+  .submitButton span {
+    font-family: 'DM Sans', sans-serif;
+  }

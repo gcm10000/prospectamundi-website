@@ -1,0 +1,13 @@
+.blogCategorizeItem {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.blogCategorizeItemIcon {
+    color: #20282D;
+}
+
+.blogCategorizeItemLink {
+    font-weight: 400;
+}

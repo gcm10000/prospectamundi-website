@@ -1,0 +1,15 @@
+.blogNewsContent {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+}
+
+.blogNewsContentImg {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+
+.blogNewsContentText {
+
+}

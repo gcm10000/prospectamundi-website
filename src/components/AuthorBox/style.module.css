@@ -1,0 +1,32 @@
+.postAboutAuthor {
+    display: flex;
+    flex-direction: row;
+    gap: 1.2em;
+    background-color: #F7F7F7;
+    border: 2px solid #F3F3F3;
+    padding: 25px;
+}
+
+.postAuthorTitle {
+    color: #20282d;
+    font-weight: 500;
+}
+
+.postAuthorText {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.postAuthorImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .postAboutAuthor {
+        flex-direction: column;
+        align-items: center;
+    }
+}
