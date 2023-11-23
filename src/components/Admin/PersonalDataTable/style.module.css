@@ -1,0 +1,20 @@
+.personalDataTable {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    border-spacing: 1.5em;
+}
+
+.personalDataTable thead th {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.personalDataTable tbody tr {
+    border-bottom: 1px solid #DFE0EB;
+    height: 70px;
+}​
+
+.personalDataTable tbody tr:last-child { 
+    border-bottom: none; 
+}

@@ -5,6 +5,7 @@ import Backdrop from './backdrop'
 import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
 import AnalyticsComponent from '@/components/AnalyticsComponent';
+import RedirectComponent from '@/components/RedirectComponent'
 
 
 export const metadata: Metadata = {
@@ -39,10 +40,11 @@ export default function RootLayout({
         }
       </head>
       <body>
+        <RedirectComponent></RedirectComponent>
         <AnalyticsComponent></AnalyticsComponent>
         <Navbar></Navbar>
         {children}
-        <Backdrop />
+        <Backdrop /> 
         <FooterSection />
       </body>
     </html>

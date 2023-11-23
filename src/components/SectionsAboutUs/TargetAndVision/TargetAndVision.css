@@ -16,7 +16,7 @@
     font-size: 1.4rem;
 }
 
-.aboutus--card span {
+.aboutus--card span, .aboutus--card div {
     text-align: center;
 }
 

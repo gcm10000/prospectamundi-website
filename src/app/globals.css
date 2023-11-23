@@ -1,8 +1,7 @@
-* {
+*:not(span) {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* font-family: 'PT Sans', sans-serif; */
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -12,12 +11,12 @@ body, html {
   padding: 0 !important;
 }
 
-h1, h2, h3, h4, h5, h6, p, span {
+h1, h2, h3, h4, h5, h6, p, /*span*/ div {
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
 }
 
-p, span {
+p, /*span*/ div {
   font-family: 'DM Sans', sans-serif;
   font-weight: 200;
 }

@@ -21,7 +21,6 @@ export function AnalyticsComponent() {
   const cookieHelper = CookieHelper();
 
   const onLoad = async () => {
-    debugger;
     if (process.env.NEXT_PUBLIC_APP_ENVIRONMENT == 'DEVELOPMENT')
       deleteCookie('trackId');
 
@@ -120,7 +119,6 @@ export function AnalyticsComponent() {
   };
 
   useEffect(() => {
-    debugger;
     const trackIdFromCookies = cookieHelper.getCookie('trackId');
     if (trackIdFromCookies) {
       sendEnterRequest();
@@ -145,7 +143,6 @@ export function AnalyticsComponent() {
     }
   
     async function getMyIP() {
-      debugger;
       const response = await fetch("https://api.ipify.org?format=json", {
         method: 'GET',
         redirect: 'follow'

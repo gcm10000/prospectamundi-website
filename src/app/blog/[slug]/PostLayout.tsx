@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.module.css';
-import LayoutBase from '../LayoutBase';
+import LayoutBase from '../LayoutBlogBase';
 import { CalendarFill } from 'react-bootstrap-icons';
 import AuthorBox from '@/components/AuthorBox';
 

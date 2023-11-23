@@ -18,7 +18,7 @@ function SideNavigationBar() {
                 <li key={index} className={item.cName}>
                   <a href={item.path}>
                     {item.icon}
-                    <span className='vertical-navbar-text'>{item.title}</span>
+                    <div className='vertical-navbar-text'>{item.title}</div>
                   </a>
                 </li>
               );

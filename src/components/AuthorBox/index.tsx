@@ -11,12 +11,16 @@ function AuthorBox({
     }) {
   return (
     <section className={style.postAboutAuthor}>
-        <img src="/images/samantha.jpg"
-            className={style.postAuthorImg} />
+        <img 
+            src={srcImg}
+            className={style.postAuthorImg}
+            width={150}
+            height={150} 
+        />
         <div className={style.postAuthorText}>
-            <p style={{fontSize: 'small'}}>Autora</p>
-            <h2 className={style.postAuthorTitle}>Samantha Sepulveda</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis blandit nisi, sit amet hendrerit enim vestibulum fermentum. Phasellus lobortis orci neque, eget volutpat augue dignissim sit amet. Nunc egestas est ac nibh faucibus, nec malesuada eros vestibulum. Morbi lacus massa, condimentum eget interdum in, lacinia ut massa.</p>
+            <p style={{fontSize: 'small'}}>Autor(a)</p>
+            <h2 className={style.postAuthorTitle}>{name}</h2>
+            <p>{description}</p>
         </div>
     </section>
   )

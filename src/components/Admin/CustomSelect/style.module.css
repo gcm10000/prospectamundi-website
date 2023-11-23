@@ -1,0 +1,12 @@
+.customSelect {
+    height: 45px;
+    padding-left: 15px;
+    padding-right: 8px;
+    flex: 1;
+}
+
+@media screen and (max-width: 960px) {
+    .customSelect {
+        width: 100%;
+    }
+}

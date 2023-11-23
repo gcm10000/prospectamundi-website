@@ -18,7 +18,7 @@ function CardAboutUs({ icon, title, description, className } : CardAboutUsProps)
                 <h2 className='title'>{title}</h2>
             </div>
             <div className='text'>
-                <span>{description}</span>
+                <p>{description}</p>
             </div>
         </div>
   </div>

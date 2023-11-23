@@ -1,13 +1,14 @@
   .vertical-nav-menu {
-    background-color: #060b26;
+    background-color: #20282d;
     width: 280px;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     position: sticky;
     top: 0;
     left: -100%;
     transition: 850ms;
+    padding-top: 1.5em;
   }
   
   .vertical-nav-menu.active {

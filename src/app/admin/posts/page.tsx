@@ -1,11 +1,9 @@
 import React from 'react'
-import PostsLayout from './layout';
+import PostsLayout from './PostsLayout';
 
 function Posts() {
   return (
-    <>
-      <PostsLayout></PostsLayout>
-    </>
+      <PostsLayout />
   )
 }
 

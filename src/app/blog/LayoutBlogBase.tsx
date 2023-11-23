@@ -7,6 +7,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import CategorizeItem from '@/components/CategorizeItem';
 import LastNewsItem from '@/components/LastNewsItem';
 import IconButton from '@/components/IconButton';
+import FormSearch from '@/components/FormSearch';
 
 function LayoutBase({
     children
@@ -38,18 +39,10 @@ function LayoutBase({
             <div className={styles.blogWrapper}>
                 {children}
                 <div className={styles.blogSideBar}>
-                    <form className={styles.blogSearch}>
-                        <input name="q" 
-                               className={styles.blogSearchInput}
-                               type="text" 
-                               placeholder='Quero saber sobre...'
-                               autoComplete='off'
-                        />
-                        <IconButton icon={faSearch} 
-                                    circleBorder
-                        />
-                    </form>
-                    
+                    <FormSearch 
+                        placeHolder='Quero saber sobre...' 
+                        nameSearchInput='q'
+                    />
                     <h3 className={styles.blogSideBarTitle}>ÚLTIMAS NOTÍCIAS</h3>
                     <div className={styles.blogNews}>
                         <LastNewsItem title='Postagem do Blog Número 1'

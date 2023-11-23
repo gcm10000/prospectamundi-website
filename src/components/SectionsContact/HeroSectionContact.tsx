@@ -91,7 +91,6 @@ function HeroSectionContact() {
     
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const file = formData.get('file') as File;
-    debugger;
     if (file != null && file.size == 0 && talentPoolChoose) {
       MySwal.fire({
         title: <strong>Erro</strong>,
@@ -111,9 +110,9 @@ function HeroSectionContact() {
       formData.append('trackId', trackId);
 
     const client = contactClient();
-    debugger;
+
     const result = await client.post(formData);
-    debugger;
+
     if (result.status == 200) {
       MySwal.fire({
         title: <strong>Sucesso!</strong>,

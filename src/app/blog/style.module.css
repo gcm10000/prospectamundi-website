@@ -72,21 +72,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     padding: 15px;
-} 
-
-.blogSearch {
-    display: flex;
-    gap: 12px;
-    align-items: center;
 }
 
-.blogSearchInput {
-    height: 45px;
-    padding-left: 15px;
-    padding-right: 8px;
-    /* width: 220px; */
-    /* width: 100%; */
-}
 
 .blogSideBarTitle {
     font-weight: 500;

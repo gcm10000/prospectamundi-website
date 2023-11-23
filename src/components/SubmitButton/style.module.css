@@ -25,6 +25,6 @@
   .submitButtonBorderRadius {
     border-radius: 25px;
   }
-  .submitButton span {
+  .submitButton span, .submitButton div {
     font-family: 'DM Sans', sans-serif;
   }

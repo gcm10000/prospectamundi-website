@@ -4,7 +4,7 @@ import CardBlog, { CardBlogProps } from '@/components/CardBlog';
 import React, { useEffect, useState } from 'react';
 import styles from './style.module.css';
 import { TablePagination } from '@mui/material';
-import LayoutBase from './LayoutBase';
+import LayoutBase from './LayoutBlogBase';
 
 function BlogLayout() {
     const count = 100;
