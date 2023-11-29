@@ -1,5 +1,5 @@
 # Usa uma imagem base com Node.js
-FROM node:alpine
+FROM node:alpine as BUILD_IMAGE
 
 # Cria e define o diretório de trabalho dentro do contêiner
 WORKDIR /usr/src/app
