@@ -29,7 +29,7 @@ export function getQuery(searchParams?: { [key: string]: string | string[] | und
   }
 
 export async function getPosts(page: number, pageSize: number, query: string | null) {
-    const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API;
+    const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
     const endPointPost = baseURL + "blog/Post/anonymous/GetAll";
     
     const params = new URLSearchParams();
@@ -48,7 +48,7 @@ export async function getPosts(page: number, pageSize: number, query: string | n
   }
   
   export async function getLastestPosts() {
-    const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API;
+    const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
     const endPointPost = baseURL + "blog/Post/anonymous/GetAll";
   
     const params = new URLSearchParams();
@@ -64,7 +64,7 @@ export async function getPosts(page: number, pageSize: number, query: string | n
   }
   
   export async function getCategories() {
-    const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API;
+    const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
     const endPointCategory = baseURL + "blog/Category/anonymous/GetAll";
   
     const response = await fetch(endPointCategory, { cache: 'no-store' });
