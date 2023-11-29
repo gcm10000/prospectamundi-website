@@ -1,0 +1,146 @@
+.blogHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 50vh;
+    /* background-color: black; */
+    color: var(--primary);
+    gap: 12px;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background-image: url('/images/image-blog.jpg');
+    /* Outras propriedades de background, se necessário */
+    background-size: cover; /* Para ajustar o tamanho da imagem */
+    background-position: center; /* Para centralizar a imagem */
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+    object-fit: contain;
+}
+
+.blogHeadLine {
+    font-weight: 500;
+    font-size: 4em;
+}
+
+.formNewsletter {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.blogNewsletterInput {
+    height: 45px;
+    padding-left: 15px;
+    padding-right: 8px;
+    width: 220px;
+    outline: none;
+    font-weight: 500;
+}
+
+.blogWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    margin: 40px auto;
+    gap: 2.5rem;
+}
+
+.blogListWithPagination {
+    
+}
+
+.blogList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.blogSideBar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    width: 20vw;
+}
+
+.blogList .blogTitle {
+    padding-left: 15px;
+}
+
+.blogListContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 15px;
+    width: 50vw;
+}
+
+
+.blogSideBarTitle {
+    font-weight: 500;
+}
+
+.blogCategorize {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+
+.blogNews {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+@media screen and (max-width: 960px) {
+    .blogWrapper {
+        flex-direction: column;
+        width: 95vw;
+    }
+
+    .blogListContent {
+        width: 100%;
+    }
+
+    .blogList {
+        width: 100%;
+    }
+
+    .blogSearch {
+        width: 100%;
+    }
+    
+    .blogSideBar {
+        width: 90vw;
+        align-self: center;
+    }
+
+    .blogSearchInput {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1220px) {
+    .blogListContent {  grid-template-columns: auto;}
+}
+
+@media (max-width: 768px) {
+    /* .blogListContent {  grid-template-columns: auto;} */
+    .blogHeadLine {
+        font-size: 3em;
+    }
+
+    .formNewsletter {
+        flex-direction: column;
+    }
+} 
+
+
+@media (max-width: 425px) {
+    .blogListContent {  grid-template-columns: auto;}
+    .blogHeadLine {
+        font-size: 2em;
+    }
+} 

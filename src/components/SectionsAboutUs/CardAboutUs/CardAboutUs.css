@@ -26,7 +26,7 @@
     font-size: 2.5rem;
 }
 
-.cardaboutus span {
+.cardaboutus span, .cardaboutus div {
     text-align: center;
 }
 

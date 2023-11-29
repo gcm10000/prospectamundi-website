@@ -9,7 +9,7 @@ function FooterSection() {
     <footer>
         <div className="footer-mainContent">
             <a href="/">
-                <img src="../images/logo-b.png" alt='Prospecta Mundi' className="footer-Logo" />
+                <img src="/images/logo-b.png" alt='Prospecta Mundi' className="footer-Logo" />
             </a>
             <div className="footer-contactContent">
                 <h1>Contato</h1>
@@ -20,7 +20,7 @@ function FooterSection() {
                     </div>
                     <div className="footer-contact">
                         <Envelope></Envelope>
-                        <a href="malto:contato@prospectamundi.com">contato@prospectamundi.com</a>
+                        <a href="mailto:contato@prospectamundi.com">contato@prospectamundi.com</a>
                     </div>
                     <div className="footer-contact">
                         <HandThumbsUp></HandThumbsUp>

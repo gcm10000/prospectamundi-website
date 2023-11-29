@@ -5,11 +5,11 @@ import Backdrop from './backdrop'
 import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
 import AnalyticsComponent from '@/components/AnalyticsComponent';
-
+import RedirectComponent from '@/components/RedirectComponent'
 
 export const metadata: Metadata = {
   title: 'Consultoria de Vendas Prospecta Mundi',
-  description: 'Prospecta Mundi é uma consultoria de vendas com as melhores práticas de vendas.'
+  description: 'Descubra uma consultoria de vendas impactante. A Prospecta Mundi oferece estratégias eficazes e práticas de vendas para impulsionar seu sucesso comercial.'
 };
 
 export default function RootLayout({
@@ -29,20 +29,19 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHK3WWQML4"></script>
-        { process.env.NEXT_PUBLIC_APP_ENVIRONMENT == 'PRODUCTION' && 
-          <script type='text/javascript'>
-              window.dataLayer = window.dataLayer || [];
-              gtag('js', new Date());
+        <script type='text/javascript' suppressHydrationWarning>
+            window.dataLayer = window.dataLayer || [];
+            gtag('js', new Date());
 
-              gtag('config', 'G-EHK3WWQML4');
-        </script>
-        }
+            gtag('config', 'G-EHK3WWQML4');
+      </script>
       </head>
       <body>
+        <RedirectComponent></RedirectComponent>
         <AnalyticsComponent></AnalyticsComponent>
         <Navbar></Navbar>
         {children}
-        <Backdrop />
+        <Backdrop /> 
         <FooterSection />
       </body>
     </html>

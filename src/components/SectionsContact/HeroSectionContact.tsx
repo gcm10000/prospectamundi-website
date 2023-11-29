@@ -11,6 +11,7 @@ import withReactContent from 'sweetalert2-react-content';
 import CookieHelper from '../../helpers/CookieHelper';
 import UploadInput from '../UploadInput';
 import { Button } from '../Button';
+import SubmitButton from '../SubmitButton';
 
 
 //Adicionar captcha v3 também
@@ -90,7 +91,6 @@ function HeroSectionContact() {
     
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const file = formData.get('file') as File;
-    debugger;
     if (file != null && file.size == 0 && talentPoolChoose) {
       MySwal.fire({
         title: <strong>Erro</strong>,
@@ -110,7 +110,9 @@ function HeroSectionContact() {
       formData.append('trackId', trackId);
 
     const client = contactClient();
+
     const result = await client.post(formData);
+
     if (result.status == 200) {
       MySwal.fire({
         title: <strong>Sucesso!</strong>,
@@ -119,6 +121,24 @@ function HeroSectionContact() {
         showCancelButton: false,
         confirmButtonText: <Button>Entendido</Button>,
         icon: 'success'
+      });
+
+      return;
+    }
+
+    const response = (result as any).response;
+
+    if (response.status == 400) {
+      const errors : any[] = response.data.errors;
+      MySwal.fire({
+        title: <strong>Erro</strong>,
+        html: <>{ errors.map(x => 
+          <p>{x.errorMessage}</p>
+        ) }</>,
+        buttonsStyling: false,
+        showCancelButton: false,
+        confirmButtonText: <Button>Entendido</Button>,
+        icon: 'error'
       });
     }
 };
@@ -163,11 +183,12 @@ function HeroSectionContact() {
                     </div>
                     }
               </div>
-
-              <button className="form--submit">
-                  <span>Enviar</span> 
-                  <FontAwesomeIcon style={{color: 'white', 'marginLeft': '7px'}} icon={faArrowUpRightFromSquare} />
-              </button>
+              <div style={{marginTop: '15px'}}>
+                <SubmitButton text='Enviar' 
+                              icon={faArrowUpRightFromSquare} 
+                              circleBorder 
+                />
+              </div>
           </form>
         </SectionWithBlur>
       </header>

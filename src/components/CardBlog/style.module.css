@@ -1,0 +1,53 @@
+.cardBlog {
+    overflow: hidden;
+    box-shadow: 0 2px 20px #CECECE;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+    min-height: 530px;
+}
+
+.cardBlog:hover {
+    transform: scale(1.05);
+}
+
+
+.cardBlogBody {
+
+}
+
+.cardBlogContentImg {
+    height: 12rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.cardBlogTitle {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0rem;
+}
+
+.cardBlogDescription {
+    padding: 0 1rem;
+}
+
+.cardBlogBy {
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    font-size: small;
+    font-weight: 500;
+}
+
+.cardBlogButton {
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 1rem;
+    text-align: center;
+}

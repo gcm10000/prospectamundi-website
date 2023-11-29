@@ -1,11 +1,9 @@
 import React from 'react'
-import UsersLayout from './layout';
+import UsersClient from './UsersLayout';
 
 function Users() {
   return (
-    <>
-      <UsersLayout></UsersLayout>
-    </>
+    <UsersClient />
   )
 }
 

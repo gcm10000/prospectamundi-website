@@ -1,0 +1,20 @@
+.blogCategorizeItem {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    transition: background-color 0.15s ease;
+    padding: 10px;
+}
+
+.blogCategorizeItem:hover {
+    background-color: rgba(222, 222, 222, 0.8);
+}
+
+.blogCategorizeItemIcon {
+    color: var(--primary);
+}
+
+.blogCategorizeItemLink {
+    font-weight: 400;
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.MuiMenuItem-root.Mui-selected {
+    background: yellow;
+  }
+  .MuiTablePagination-select[aria-expanded="true"] {
+    border: 2px solid green;
+  }
+  
+  .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
+    color: var(--primary) !important;
+  }
+  
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+    background-color: rgba(32,40,45, 0.1) !important;
+  }
+  
+  .hide-html-scroll {
+    overflow-y: hidden;
+  }

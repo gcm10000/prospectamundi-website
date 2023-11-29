@@ -1,26 +1,43 @@
+"use client"
+
 import axios from 'axios';
 import { ErrorDialog, ErrorGenericDialog } from '../components/ErrorDialog/ErrorDialog';
 import { hideBackdrop, showBackdrop } from '@/layouts/AutoBackdrop';
+import { showError } from '@/handlers/errorHandling';
+import { messageService } from '@/services/messageService';
+import { AuthService } from '@/services/authService';
 
 export interface TokensProps {
   accessToken: string,
   refreshToken: string
 }
 
-export function getTokens() {
-  const json = localStorage.getItem('auth_tokens');
-  if (json == null)
+export function getAccessToken() {
+  const jsonAsString = localStorage.getItem('accessToken');
+  if (jsonAsString == null)
     return null;
 
-  const authTokens : TokensProps = JSON.parse(json);
+    return jsonAsString;
+}
+
+
+export function getTokens() {
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  if (!accessToken || !refreshToken)
+      return null;
+  
+  const authTokens : TokensProps = {
+    accessToken,
+    refreshToken
+  };
   return authTokens;
 }
 
 export function setTokens({accessToken, refreshToken} : TokensProps) {
-  localStorage.setItem('auth_tokens', JSON.stringify({
-    accessToken: accessToken,
-    refreshToken: refreshToken
-  }));
+  localStorage.setItem('accessToken', accessToken);
+  localStorage.setItem('refreshToken', refreshToken);
 }
 
 export function clearToken() {
@@ -32,6 +49,7 @@ export function isLogged() {
 }
 
 export function logoff() {
+  alert('logoff');
   localStorage.removeItem('auth_tokens');
   window.location.href = "/login";
 }
@@ -71,9 +89,9 @@ const axiosClient = axios.create({
       return response;
     }, 
     function (error) {
-      console.error('Request Error:', error);
       hideBackdrop();
-      debugger;
+      
+      console.error('Request Error:', error);
       if (error.code == 'ERR_NETWORK') {
         const errors = ["Não foi possível se conectar com o servidor."];
         ErrorDialog({errors});
@@ -81,9 +99,24 @@ const axiosClient = axios.create({
       }
 
       const res = error.response;
+      
+      if (res.status == 400) {
+        console.log('res.data', res.data);
+        showError(error.response.data.errors);
+        return Promise.reject(error);
+      }
+
+      if (res.status == 403) {
+        messageService.error("Acesso proibido.");
+        return Promise.reject(error);
+      }
+      
       if (res.status == 401) {
-        clearToken();
-        window.location.href = "/login";
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = "/adminLogin";
+        // messageService.error("Não autenticado");
+        return Promise.reject(error);
       }
       
       console.error("Looks like there was a problem. Status Code: " + res.status);

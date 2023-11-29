@@ -1,0 +1,44 @@
+.personalDataTable {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    border-spacing: 1.5em;
+}
+
+.personalDataTable thead th {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.personalDataTable tbody tr {
+    border-bottom: 1px solid #DFE0EB;
+    height: 70px;
+}​
+
+.personalDataTable tbody tr:last-child { 
+    border-bottom: none; 
+}
+
+.personalDataTable tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.personalDataTable thead tr th:first-child {
+    padding-left: 10px;
+}
+
+.personalDataTable tbody tr td:first-child {
+    padding-left: 10px;
+}
+
+.personalDataTable tbody tr:hover {
+    background-color: rgba(222, 222, 222, 0.8);
+}
+
+.personalDataTable tbody tr:nth-child(odd) {
+    background-color: #F9F9FB;
+}
+
+.personalDataTable tbody tr:nth-child(odd):hover {
+    background-color: rgba(222, 222, 222, 0.8);
+}

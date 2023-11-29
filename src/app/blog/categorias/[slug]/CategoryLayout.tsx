@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UsersLayout() {
+function CategoryLayout() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function UsersLayout() {
   )
 }
 
-export default UsersLayout;
+export default CategoryLayout
