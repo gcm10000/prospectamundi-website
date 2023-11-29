@@ -1,5 +1,5 @@
 # Usa uma imagem base com Node.js
-FROM node:alpine as BUILD_IMAGE
+FROM node:latest
 
 # Cria e define o diretório de trabalho dentro do contêiner
 WORKDIR /usr/src/app
@@ -16,20 +16,7 @@ COPY . .
 # Constrói a aplicação
 RUN npm run build
 
-# remove dev dependencies
-RUN npm prune --production
-
-FROM node:alpine
-
-WORKDIR /app
-
-COPY --from=BUILD_IMAGE /app/package.json ./package.json
-COPY --from=BUILD_IMAGE /app/node_modules ./node_modules
-COPY --from=BUILD_IMAGE /app/.next ./.next
-COPY --from=BUILD_IMAGE /app/public ./public
-
-# Expõe a porta 80
-EXPOSE 80
+# Define a porta em que a aplicação vai rodar dentro do contêiner
 EXPOSE 3000
 
 # Comando para iniciar a aplicação quando o contêiner for iniciado
