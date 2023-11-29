@@ -1,5 +1,3 @@
-"use server"
-
 import React from 'react'
 import BlogLayout from './BlogLayout';
 import { getCategories, getLastestPosts, getPageNumber, getPosts, getQuery } from '@/network/serverSideClient';

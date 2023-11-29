@@ -6,10 +6,6 @@ import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
 import AnalyticsComponent from '@/components/AnalyticsComponent';
 import RedirectComponent from '@/components/RedirectComponent'
-import dynamic from 'next/dynamic';
-
-
-const NavBarNoSSR = dynamic(() => import('@/components/Navbar'), { ssr: false })
 
 export const metadata: Metadata = {
   title: 'Consultoria de Vendas Prospecta Mundi',

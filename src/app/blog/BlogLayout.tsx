@@ -9,8 +9,6 @@ import { PaginatedList } from '@/interfaces/PaginatedList';
 import { Pagination } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
 import { CategoryDto } from '@/interfaces/CategoryDto';
-import { router } from '@/services/redirectService';
-
 
 function BlogLayout({ paginatedPost, lastestPosts, categories } : { 
     paginatedPost : PaginatedList<PostDto>,
@@ -27,11 +25,13 @@ function BlogLayout({ paginatedPost, lastestPosts, categories } : {
     const data : CardBlogProps[] = paginatedPost.items
             .map(x => ({
                 title: x.title,
-                to: '/blog/' + x.slug,
+                to: "/" + x.slug,
                 author: x.authorName,
                 description: x.summaryContent,
                 imgSrc: x.imageURL,
             }));
+
+            console.log(data);
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
         setSearchPage(page);
