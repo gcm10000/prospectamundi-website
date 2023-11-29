@@ -1,23 +1,39 @@
-import { useEffect } from "react";
-import { AuthorizationService } from "@/services/authorizationService";
-import { redirect } from "next/navigation";
+"use client"
 
-export const withAuthProtection = (Component: React.ComponentType<any>, 
-    controllerName: string, 
-    actionName: string) => {
+import { Role } from '@/interfaces/Role';
+import currentUserService from '@/services/currentUserService';
+import { router } from '@/services/redirectService';
+import React, { ComponentType, useEffect, useState } from 'react';
 
-    if (!AuthorizationService.hasPermission(controllerName, actionName)) {
-        return <div><b>Unauthorized Access</b></div>;
-    }
+interface WithAuthenticationProps {
+  isAuthenticated: boolean; // Sua lógica de autenticação pode definir esse valor
+}
 
-    return function ProtectedComponent(props: any) {
-      useEffect(() => {
-        const token = localStorage.getItem('accessToken');
-        if (!token) {
-          redirect('/adminLogin');
-        }
-      }, []);
-  
-      return <Component {...props} />;
-    };
+const withAuthentication = <P extends object>(
+  WrappedComponent: ComponentType<P & WithAuthenticationProps>,
+  allowedRoles: Role[]
+): React.FC<P> => {
+  const WithAuthenticationComponent: React.FC<P> = (props) => {
+
+    const [isAuthorized, setIsAuthorized] = useState(false);
+
+    useEffect(() => {
+      const userService = currentUserService();
+
+      const isAuthorized = userService.isUserAllowed(allowedRoles);
+      if (!isAuthorized) {
+        router?.push("/adminLogin");
+      }
+      setIsAuthorized(isAuthorized);
+    }, []);
+
+    if (isAuthorized)
+      return <WrappedComponent {...props as P & WithAuthenticationProps} />;
+    
+    return null;
   };
+
+  return WithAuthenticationComponent;
+};
+
+export default withAuthentication;

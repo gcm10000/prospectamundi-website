@@ -5,6 +5,10 @@ import Link from 'next/link';
 import './Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faBars }  from '@fortawesome/free-solid-svg-icons';
+import ChipWithDropdown, { DropdownButtonProps } from '../ChipWithDropdown';
+import { AuthService } from '@/services/authService';
+import useSWR from 'swr';
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -12,6 +16,34 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
+
+  const fetcher = async (url: string) => {
+    const author = AuthService.getProfile();
+    return author;
+  };
+  const { data: author, error } = useSWR('/api/profile', fetcher);
+
+  
+  const firstName = author?.firstName;
+  const imageURL = author?.profileImageUrl;
+
+  const dropdownButtons : DropdownButtonProps[] = [
+    { 
+      text: 'Dashboard',
+      deleteflag: false,
+      onClick: () => {
+          location.href = '/admin/posts';
+      } 
+    },
+    { 
+      text: 'Logout',
+      deleteflag: true,
+      onClick: () => {
+          AuthService.logout();
+          location.reload();
+      } 
+    },
+  ];
   return (
     <>
       <nav className='navbar'>
@@ -43,6 +75,15 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
+                href='/blog'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Blog
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
                 href='/contato'
                 className='nav-links'
                 onClick={closeMobileMenu}
@@ -50,7 +91,20 @@ function Navbar() {
                 Contato
               </Link>
             </li>
-
+            { author && <li className='nav-item'>
+                  <div style={{ display: 'flex',
+                      height: '100%',
+                      flexWrap: 'wrap',
+                      alignContent: 'center',
+                      justifyContent: 'center'
+                    }}>
+                    <ChipWithDropdown 
+                        label={firstName}
+                        srcURL={imageURL}
+                        dropdownButtons={dropdownButtons}
+                    />
+                  </div>
+            </li> }
             {/* <li>
               <Link
                 to='/sign-up'

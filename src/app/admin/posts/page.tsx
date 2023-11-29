@@ -1,9 +1,9 @@
 import React from 'react'
-import PostsLayout from './PostsLayout';
+import PostsClient from './pageClient';
 
 function Posts() {
   return (
-      <PostsLayout />
+      <PostsClient />
   )
 }
 

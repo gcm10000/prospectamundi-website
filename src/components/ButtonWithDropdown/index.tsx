@@ -6,20 +6,24 @@ import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
 import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 
-export interface ButtonWithDropdownProps {
-    text: string,
-    onClick: (id: string) => void,
-    deleteFlag?: boolean | undefined
+export interface DropdownButtonProps<T> {
+  text: string,
+  onClick: (id: string) => void,
+  deleteflag: boolean,
+  condition: (value: T) => boolean;
 };
 
-function ButtonWithDropdown({
+
+function ButtonWithDropdown<T>({
     text,
     dropdownButtons,
-    id
+    id,
+    value
 }: {
     text: string,
-    dropdownButtons: ButtonWithDropdownProps[],
-    id: string
+    dropdownButtons: DropdownButtonProps<T>[],
+    id: string,
+    value: T
 }) {
 
     const blue = {
@@ -66,15 +70,20 @@ function ButtonWithDropdown({
         z-index: 1;
         `,
       );
+
       
-      const MenuItem = styled(BaseMenuItem)<{ deleteFlag?: boolean }>(
-        ({ theme, deleteFlag  }) => `
+      const MenuItem = styled(BaseMenuItem)<{ deleteflag: 'true' | 'false' }>(
+        ({ theme, deleteflag  }) => `
         list-style: none;
         padding: 8px;
         border-radius: 8px;
         cursor: default;
         user-select: none;
-        ${deleteFlag ? 'color: red;' : ''}
+        ${
+          deleteflag !== undefined && deleteflag.toString() === 'true'
+            ? 'color: red;'
+            : ''
+        }
 
         &:last-of-type {
           border-bottom: none;
@@ -93,7 +102,7 @@ function ButtonWithDropdown({
         &:hover:not(.${menuItemClasses.disabled}) {
           background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
           color: ${theme.palette.mode === 'dark' ? blue[100] : blue[900]};
-          ${deleteFlag ? 'color: red;' : ''}
+          ${deleteflag == 'true' ? 'color: red;' : ''}
         }
         `,
       );
@@ -130,21 +139,26 @@ function ButtonWithDropdown({
         `,
       );
 
+      const filteredDropdownButtons = dropdownButtons.filter(x => x.condition(value));
+
   return (
     <Dropdown>
-      <MenuButton>{text}</MenuButton>
-      <Menu slots={{ listbox: Listbox }}>
-        { 
-            dropdownButtons.map((x, index) => 
-                <MenuItem onClick={() => {x.onClick(id)}} 
-                          key={index}
-                          deleteFlag={x.deleteFlag}>
-                    {x.text}
-                </MenuItem>
-        )}
-      </Menu>
+      <MenuButton sx={{cursor: (filteredDropdownButtons.length == 0) ? 'no-drop' : ''}}>{text}</MenuButton>
+      {
+        filteredDropdownButtons.length > 0 && 
+            <Menu slots={{ listbox: Listbox }}>
+            { 
+                filteredDropdownButtons.map((x, index) => 
+                    <MenuItem onClick={() => {x.onClick(id)}} 
+                              key={index}
+                              deleteflag={(x.deleteflag?.toString() || false) as any}>
+                        {x.text}
+                    </MenuItem>
+            )}
+          </Menu>
+      }
     </Dropdown>
   )
 }
 
-export default ButtonWithDropdown
+export default ButtonWithDropdown;

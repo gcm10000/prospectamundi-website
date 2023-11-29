@@ -27,7 +27,7 @@
   }
 
   .navbar-logo {
-    color: #fff;
+    color: var(--contrast-primary);
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -44,7 +44,7 @@
   
   .nav-menu {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(5, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;
@@ -58,7 +58,7 @@
   }
   
   .nav-links {
-    color: #fff;
+    color: var(--contrast-primary);
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -67,12 +67,12 @@
   }
   
   .nav-links:hover {
-    border-bottom: 4px solid #fff;
+    border-bottom: 4px solid var(--contrast-primary);
     transition: all 0.2s ease-out;
   }
   
   .fa-bars {
-    color: #fff;
+    color: var(--contrast-primary);
   }
   
   .nav-links-mobile {
@@ -117,7 +117,7 @@
     }
   
     .nav-links:hover {
-      background-color: #fff;
+      background-color: var(--contrast-primary);
       color: #242424;
       border-radius: 0;
     }
@@ -146,7 +146,7 @@
     }
   
     .fa-times {
-      color: #fff;
+      color: var(--contrast-primary);
       font-size: 2rem;
     }
   
@@ -159,14 +159,14 @@
       text-decoration: none;
       font-size: 1.5rem;
       background-color: transparent;
-      color: #fff;
+      color: var(--contrast-primary);
       padding: 14px 20px;
-      border: 1px solid #fff;
+      border: 1px solid var(--contrast-primary);
       transition: all 0.3s ease-out;
     }
   
     .nav-links-mobile:hover {
-      background: #fff;
+      background: var(--contrast-primary);
       color: #242424;
       transition: 250ms;
     }

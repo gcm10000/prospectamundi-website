@@ -10,14 +10,17 @@ function SubmitButton({
     circleBorder,
     style,
     to,
-    onClick
+    onClick,
+    type
 }: {
     text: string,
     icon?: IconProp,
     circleBorder?: boolean,
     style?: CSSProperties | undefined,
     to?: string | undefined,
-    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined,
+    type?: "button" | "submit" | "reset" | undefined
+
 }) {
 
     const buttonStyle = getStyle();
@@ -37,7 +40,7 @@ function SubmitButton({
         </button> }
         { to && 
             <Link href={to}>
-                <button className={buttonStyle} style={style} onClick={onClick}>
+                <button className={buttonStyle} style={style} onClick={onClick} type={type}>
                     <div style={{fontWeight: '400', margin: '0 auto'}}>{text}</div> 
                     { icon && <FontAwesomeIcon style={{color: 'white', marginLeft: '12px'}} icon={icon} /> }
                 </button>

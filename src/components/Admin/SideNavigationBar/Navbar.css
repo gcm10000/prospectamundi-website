@@ -1,5 +1,5 @@
   .vertical-nav-menu {
-    background-color: #20282d;
+    background-color: var(--primary);
     width: 280px;
     min-height: 100vh;
     display: flex;

@@ -1,13 +1,15 @@
 import SideNavigationBar from '@/components/Admin/SideNavigationBar';
 import React from 'react';
 
-function AdminLayoutBase({ title, children }: {
+function AdminLayoutBase({ title, children, donotShowSideBar }: {
     title : string,
-    children: React.ReactNode
+    donotShowSideBar?: boolean | undefined,
+    children: React.ReactNode,
 }) {
+
   return (
     <div style={{display: 'flex', marginTop: '80px'}}>
-        <SideNavigationBar></SideNavigationBar>
+        {!donotShowSideBar && <SideNavigationBar></SideNavigationBar>}
         <main style={{ minHeight: '100vh', 
                        display: 'flex', 
                        flexDirection: 'column', 

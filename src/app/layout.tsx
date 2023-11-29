@@ -6,6 +6,7 @@ import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
 import AnalyticsComponent from '@/components/AnalyticsComponent';
 import RedirectComponent from '@/components/RedirectComponent'
+import { AuthService } from '@/services/authService'
 
 
 export const metadata: Metadata = {

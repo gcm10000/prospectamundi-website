@@ -2,17 +2,19 @@ import Link from 'next/link';
 import React from 'react';
 import styles from './style.module.css';
 
+export interface LastNewsItemProps {
+    to: string,
+    srcImg: string,
+    title: string,
+    description?: string | undefined
+}
+
 function LastNewsItem({
     to,
     srcImg,
     title,
     description
-}: {
-    to: string,
-    srcImg: string,
-    title: string,
-    description?: string | undefined
-}) {
+}: LastNewsItemProps) {
   return (
     <Link href={to}>
         <div className={styles.blogNewsContent}>

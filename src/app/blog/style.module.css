@@ -49,7 +49,6 @@
 }
 
 .blogList {
-    /* width: 50vw; */
     display: flex;
     flex-direction: column;
     gap: 20px
@@ -58,9 +57,9 @@
 .blogSideBar {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     align-items: flex-start;
     gap: 2rem;
+    width: 20vw;
 }
 
 .blogList .blogTitle {
@@ -72,6 +71,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     padding: 15px;
+    width: 50vw;
 }
 
 
@@ -98,7 +98,10 @@
     .blogWrapper {
         flex-direction: column;
         width: 95vw;
+    }
 
+    .blogListContent {
+        width: 100%;
     }
 
     .blogList {

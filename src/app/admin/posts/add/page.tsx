@@ -1,10 +1,10 @@
 import React from 'react';
-import AddOrEditPostLayout from '../AddOrEditPostsLayout';
+import AddPostClient from './pageClient';
 
 function AddPost() {
   return (
-    <AddOrEditPostLayout />
+    <AddPostClient />
   )
 }
 
-export default AddPost;
+export default AddPostClient;

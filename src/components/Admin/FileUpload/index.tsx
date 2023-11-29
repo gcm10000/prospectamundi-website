@@ -1,10 +1,11 @@
 import React, { useState, ChangeEvent, useRef } from 'react';
 import { CloudUpload } from 'react-bootstrap-icons';
 
-function FileUpload({ id, name, onChangeFile } : {
+function FileUpload({ id, name, onChangeFile, imageName } : {
     id : string,
     name : string,
-    onChangeFile?: ((file: File) => void) | undefined;
+    onChangeFile?: ((file: File) => void) | undefined,
+    imageName? : string | undefined
 }) {
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -27,6 +28,12 @@ function FileUpload({ id, name, onChangeFile } : {
         fileInputRef.current.click();
       }
     };
+
+    function getImageName() {
+      if (imageName)
+        return imageName;
+      return selectedFile ? selectedFile.name : '';
+    }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row', border: '1px solid #767676', cursor: 'pointer' }}>
@@ -69,7 +76,7 @@ function FileUpload({ id, name, onChangeFile } : {
           flex: 1,
           cursor: 'pointer'
         }}
-        value={selectedFile ? selectedFile.name : ''}
+        value={getImageName()}
         readOnly
         onClick={handleFileSelect}
       />

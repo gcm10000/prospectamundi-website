@@ -10,7 +10,7 @@ function CustomInput({ placeHolder,
     placeHolder: string,
     inputName: string,
     style?: React.CSSProperties | undefined,
-    text: string,
+    text?: string | undefined,
     handleInputChange?: React.ChangeEventHandler<HTMLInputElement> | undefined,
     type?: React.HTMLInputTypeAttribute | undefined,
     name?: string | undefined

@@ -1,7 +1,11 @@
+"use client"
+
 import axios from 'axios';
 import { ErrorDialog, ErrorGenericDialog } from '../components/ErrorDialog/ErrorDialog';
 import { hideBackdrop, showBackdrop } from '@/layouts/AutoBackdrop';
-import { setShowError, showError } from '@/handlers/errorHandling';
+import { showError } from '@/handlers/errorHandling';
+import { messageService } from '@/services/messageService';
+import { AuthService } from '@/services/authService';
 
 export interface TokensProps {
   accessToken: string,
@@ -9,12 +13,11 @@ export interface TokensProps {
 }
 
 export function getAccessToken() {
-  const json = localStorage.getItem('accessToken');
-  if (json == null)
+  const jsonAsString = localStorage.getItem('accessToken');
+  if (jsonAsString == null)
     return null;
 
-  const authTokens : TokensProps = JSON.parse(json);
-  return authTokens;
+    return jsonAsString;
 }
 
 
@@ -102,12 +105,19 @@ const axiosClient = axios.create({
         showError(error.response.data.errors);
         return Promise.reject(error);
       }
+
+      if (res.status == 403) {
+        messageService.error("Acesso proibido.");
+        return Promise.reject(error);
+      }
       
-      // if (res.status == 401) {
-      //   clearToken();
-      //   alert('401');
-      //   window.location.href = "/login";
-      // }
+      if (res.status == 401) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = "/adminLogin";
+        // messageService.error("Não autenticado");
+        return Promise.reject(error);
+      }
       
       console.error("Looks like there was a problem. Status Code: " + res.status);
 

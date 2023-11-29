@@ -14,8 +14,8 @@
     outline: 0;
     transition: color .27s ease-out,background-color .27s ease-out,border-color .27s ease-out;
     padding: 6px 33px 7px;
-    color: #fff;
-    background-color: #20282d;
+    color: var(--contrast-primary);
+    background-color: var(--primary);
     border: 1px solid transparent;
     --qode-hover-move-x: 110%;
     --qode-hover-move-y: 100%;

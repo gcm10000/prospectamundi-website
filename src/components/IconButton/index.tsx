@@ -7,9 +7,11 @@ import styles from './style.module.css';
 function IconButton({
     icon,
     circleBorder,
+    type
 }: {
     icon: IconProp,
     circleBorder?: boolean,
+    type?: "submit" | "reset" | "button" | undefined
 }) {
     const buttonStyle = getStyle();
 
@@ -21,7 +23,7 @@ function IconButton({
     }
 
   return (
-    <button className={buttonStyle}>
+    <button className={buttonStyle} type={type}>
         <FontAwesomeIcon style={{color: 'white', 'margin': '0 auto'}} icon={icon} />
     </button>
   )

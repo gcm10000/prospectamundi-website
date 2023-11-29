@@ -20,14 +20,14 @@ video {
   }
   
   .hero-container > h1 {
-    color: #fff;
+    color: var(--contrast-primary);
 
     margin-top: -100px;
   }
   
   .hero-container > p {
     margin-top: 8px;
-    color: #fff;
+    color: var(--contrast-primary);
     font-size: 32px;
     /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
       'Lucida Sans', Arial, sans-serif; */
@@ -107,14 +107,14 @@ video {
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     line-height: 2em;
-    color: #fff;
-    border-color: #fff;
+    color: var(--contrast-primary);
+    border-color: var(--contrast-primary);
 
     transition: color .27s ease-out,background-color .27s ease-out,border-color .27s ease-out;
   }
 
   ::placeholder {
-    color: #fff;
+    color: var(--contrast-primary);
     opacity: 1;
   }
 

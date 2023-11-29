@@ -1,0 +1,3 @@
+.MuiMenu-root, .MuiMenu-listbox, .MuiMenuItem-root {
+    z-index:1300;
+  }

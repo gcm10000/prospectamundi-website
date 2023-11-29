@@ -8,7 +8,7 @@
 }
 
 .postAuthorTitle {
-    color: #20282d;
+    color: var(--primary);
     font-weight: 500;
 }
 

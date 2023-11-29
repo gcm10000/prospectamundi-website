@@ -3,14 +3,19 @@ import { HexagonFill } from 'react-bootstrap-icons';
 import styles from './style.module.css';
 import Link from 'next/link';
 
-function CategorizeItem({ text } : { text : string }) {
+export interface CategorizeItemProps {
+    text : string, 
+    to: string 
+}
+
+function CategorizeItem({ text, to } : CategorizeItemProps) {
   return (
-    <p className={styles.blogCategorizeItem}>
-        <HexagonFill className={styles.blogCategorizeItemIcon} /> 
-        <Link href="#" className={styles.blogCategorizeItemLink}>
-            {text}
-        </Link>
-    </p>
+    <Link href={to}>
+      <p className={styles.blogCategorizeItem}>
+          <HexagonFill className={styles.blogCategorizeItemIcon} /> 
+          <label className={styles.blogCategorizeItemLink}>{text}</label>
+      </p>
+    </Link>
   )
 }
 

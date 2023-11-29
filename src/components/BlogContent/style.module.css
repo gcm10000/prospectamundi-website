@@ -10,6 +10,10 @@
     /* margin-top: 4rem !important; */
 }
 
+.contentWrapper {
+    width: 50vw;
+}
+
 
 /* 
 .postBackHome {
@@ -32,7 +36,7 @@
     align-items: center;
     margin-bottom: 18px;
     font-size: small;
-    color: #20282d;
+    color: var(--primary);
 }
 
 .postHeaderImg {
@@ -54,3 +58,9 @@
     margin: 1rem 0;
     text-align: justify;
 }
+
+@media screen and (max-width: 960px) {
+        .contentWrapper {
+            width: 100%;
+        }
+  }

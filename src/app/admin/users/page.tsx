@@ -1,9 +1,9 @@
 import React from 'react'
-import UsersLayout from './UsersLayout';
+import UsersClient from './UsersLayout';
 
 function Users() {
   return (
-    <UsersLayout />
+    <UsersClient />
   )
 }
 

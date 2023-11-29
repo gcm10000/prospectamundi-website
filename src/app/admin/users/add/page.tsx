@@ -7,8 +7,10 @@ import SubmitButton from '@/components/SubmitButton';
 import GrayArea from '@/components/GrayArea';
 import CustomSelect, { OptionProps } from '@/components/Admin/CustomSelect';
 import accountClient from '@/network/lib/accountClient';
-import { ErrorProvider } from '@/contexts/ErrorContext';
-import { setShowError } from '@/handlers/errorHandling';
+// import { ErrorProvider } from '@/contexts/ErrorContext';
+import { messageService } from '@/services/messageService';
+import withAuthentication from '@/authentication/withAuthProtection';
+import { router } from '@/services/redirectService';
 
 function AddUserLayout() {
     const [email, setEmail] = useState('');
@@ -22,7 +24,11 @@ function AddUserLayout() {
             email, 
             role: selectedValue
         });
-        
+
+        if (result.status == 200) {
+            messageService.success('Convite enviado com sucesso.');
+            router?.push('/admin/users');
+        }
     };
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -43,21 +49,9 @@ function AddUserLayout() {
         getDataFromApi();
     }, []);
 
-    useEffect(() => {
-        setShowError((error) => {
-          if (error) {
-            console.error(`Error ${error.code}: ${error.message}`);
-            // Handle the error within the component, like updating state or showing an error message
-          } else {
-            console.log('No error');
-            // Clear any previous error handling logic within the component
-          }
-        });
-      }, []);
-
   return (
-    <AdminLayoutBase title='Adicionar Usuário'>
-        <ErrorProvider>
+    <AdminLayoutBase title='Convidar Usuário'>
+        {/* <ErrorProvider> */}
         <GrayAreaInput title='Email' 
                        inputName='email' 
                        handleInputChange={(event) => setEmail(event.target.value)}
@@ -83,9 +77,9 @@ function AddUserLayout() {
                           onClick={handleForm}
             />
         </div>
-    </ErrorProvider>
+    {/* </ErrorProvider> */}
     </AdminLayoutBase>
   )
 }
 
-export default AddUserLayout;
+export default withAuthentication(AddUserLayout, ['Root', 'Administrator']);

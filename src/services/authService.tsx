@@ -3,10 +3,11 @@
 import { SignInUserRequest } from "@/interfaces/SignInUserRequest";
 import accountClient from "@/network/lib/accountClient";
 import { router } from "./redirectService";
-import withReactContent from "sweetalert2-react-content";
-import Swal from "sweetalert2";
-import { Button } from "@/components/Button";
-const MySwal = withReactContent(Swal);
+import { messageService } from "./messageService";
+import currentUserService from "./currentUserService";
+import RoleConstrants from '@/constrants/RoleConstrants'
+import authorClient from "@/network/lib/authorClient";
+import { AuthorDto } from "@/interfaces/AuthorDto";
 
 export const AuthService = {
     login: async (credentials: SignInUserRequest) => {
@@ -16,22 +17,59 @@ export const AuthService = {
         const response = result.data;
         localStorage.setItem('accessToken', response.accessToken!);
         localStorage.setItem('refreshToken', response.refreshToken!);
-        router?.push("/admin/posts");
+
+        const userService = currentUserService();
+        const role = userService.getRole();
+        if (role == RoleConstrants.root && userService.isFirstAccess()) {
+            router?.push("/admin/changePassword");
+            return;
+        }
+
+        if (role == RoleConstrants.root) {
+            router?.push("/admin/posts");
+            return;
+        }
+        
+        const authorClientAPI = authorClient();
+        const hasProfileResult = await authorClientAPI.checkIfUserHasProfile();
+        const hasProfile = hasProfileResult.data;
+        if (role != RoleConstrants.root && !hasProfile) {
+            router?.push("/admin/authors/fillProfile");
+            return;
+        }
+        
+        const profileResult = await authorClientAPI.getOwnProfile();
+        const profile = profileResult.data;
+        localStorage.setItem('authorProfile', JSON.stringify(profile));
+
+        location.href = "/admin/posts";
         return;
       }
 
-      MySwal.fire({
-        title: <strong>Erro</strong>,
-        html: <p>Email ou senha inválidos.</p>,
-        icon: 'error',
-        buttonsStyling: false,
-        showCancelButton: false,
-        confirmButtonText: <Button>Entendido</Button>,
-      });
+      messageService.error("Email ou senha inválidos");
+    },
+    storageProfile: async (): Promise<void> => {
+      const authorClientAPI = authorClient();
+
+      const profileResult = await authorClientAPI.getOwnProfile();
+      const profile = profileResult.data;
+      localStorage.setItem('authorProfile', JSON.stringify(profile));
+    },
+    getProfile: (): AuthorDto | null => {
+      const authorProfileFromLocalStorageAsString = localStorage.getItem('authorProfile');
+      if (!authorProfileFromLocalStorageAsString)
+          return null;
+
+      const authorProfileFromLocalStorage = JSON.parse(authorProfileFromLocalStorageAsString);
+      return authorProfileFromLocalStorage;
+    },
+    invalidateProfile: (): void => {
+      localStorage.removeItem('authorProfile');
     },
     logout: (): void => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-      router?.push("/adminLogin");
+      localStorage.removeItem('authorProfile');
+      location.href = "/adminLogin";
     }
   };

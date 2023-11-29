@@ -1,19 +1,47 @@
 "use client"
 
-import { ReactNode } from 'react'
+import { FormEvent, ReactNode } from 'react'
 import styles from './style.module.css'
 import SubmitButton from '@/components/SubmitButton';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import CategorizeItem from '@/components/CategorizeItem';
-import LastNewsItem from '@/components/LastNewsItem';
-import IconButton from '@/components/IconButton';
+import CategorizeItem, { CategorizeItemProps } from '@/components/CategorizeItem';
+import LastNewsItem, { LastNewsItemProps } from '@/components/LastNewsItem';
 import FormSearch from '@/components/FormSearch';
+import { PaginatedList } from '@/interfaces/PaginatedList';
+import { PostDto } from '@/interfaces/PostDto';
+import { CategoryDto } from '@/interfaces/CategoryDto';
+import newsletterSubscriberClient from '@/network/lib/newsletterSubscriberClient';
+import { messageService } from '@/services/messageService';
+
 
 function LayoutBase({
-    children
+    children,
+    latestPosts,
+    categories
 }: {
-    children: ReactNode
+    children: ReactNode,
+    latestPosts: PaginatedList<PostDto>,
+    categories: PaginatedList<CategoryDto>
 }) {
+    const categorizeItems : CategorizeItemProps[] = categories.items.map((x) => ({
+        text: x.name,
+        to: `/blog/categorias/${x.slug}`
+    }));
+
+    const lastNews : LastNewsItemProps[] = latestPosts.items
+            .map((x, index) => ({
+                key: index,
+                title: x.title,
+                srcImg: x.imageURL,
+                to: '/blog/' + x.slug
+            }));
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget as HTMLFormElement);
+        const client = newsletterSubscriberClient();
+        await client.post(formData);
+        messageService.success("Seu e-mail foi enviado com sucesso. Em breve você receberá newsletter de novas publicações.");
+    }
 
   return (
     <div style={{minHeight: '100vh', marginTop: '80px', display: 'flex', flexDirection: 'column'}}>
@@ -23,15 +51,16 @@ function LayoutBase({
                     Blog Prospecta Mundi
                 </h1>
                 <h2>Inscreva-se e receba atualizações</h2>
-                <form method='get' className={styles.formNewsletter}>
-                    <input name="q" 
+                <form className={styles.formNewsletter} onSubmit={handleSubmit}>
+                    <input name="email" 
                         className={styles.blogNewsletterInput}
                         type="text" 
                         placeholder='Endereço de E-mail'
-                        autoComplete='off'
+                        required
                     />
                     <SubmitButton text='Enviar' 
                         style={{fontWeight: '500'}}
+                        type='submit'
                     />
                 </form>
             </section>
@@ -45,33 +74,21 @@ function LayoutBase({
                     />
                     <h3 className={styles.blogSideBarTitle}>ÚLTIMAS NOTÍCIAS</h3>
                     <div className={styles.blogNews}>
-                        <LastNewsItem title='Postagem do Blog Número 1'
-                                      srcImg='https://images.unsplash.com/photo-1581464647110-26e129ce2d02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGNyZWF0b3J8ZW58MHx8fHwxNjYxNDA4ODk0&ixlib=rb-1.2.1&q=80&w=1400'
-                                      to='#' />
-                        <LastNewsItem title='Postagem do Blog Número 1'
-                                      srcImg='https://images.unsplash.com/photo-1581464647110-26e129ce2d02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGNyZWF0b3J8ZW58MHx8fHwxNjYxNDA4ODk0&ixlib=rb-1.2.1&q=80&w=1400'
-                                      to='#' />
-                        <LastNewsItem title='Postagem do Blog Número 1'
-                                      srcImg='https://images.unsplash.com/photo-1581464647110-26e129ce2d02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGNyZWF0b3J8ZW58MHx8fHwxNjYxNDA4ODk0&ixlib=rb-1.2.1&q=80&w=1400'
-                                      to='#' />
-                        <LastNewsItem title='Postagem do Blog Número 1'
-                                      srcImg='https://images.unsplash.com/photo-1581464647110-26e129ce2d02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGNyZWF0b3J8ZW58MHx8fHwxNjYxNDA4ODk0&ixlib=rb-1.2.1&q=80&w=1400'
-                                      to='#' />
-
-                        <LastNewsItem title='Postagem do Blog Número 1'
-                                      srcImg='https://images.unsplash.com/photo-1581464647110-26e129ce2d02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGNyZWF0b3J8ZW58MHx8fHwxNjYxNDA4ODk0&ixlib=rb-1.2.1&q=80&w=1400'
-                                      to='#' />
+                        { lastNews.map((x, index) => (
+                            <LastNewsItem key={index}
+                                title={x.title}
+                                srcImg={x.srcImg}
+                                to={x.to} />
+                        )) }
                     </div>
                     <h3 className={styles.blogSideBarTitle}  
                         style={{marginTop: '18px'}}>
                             CATEGORIAS
                     </h3>
                     <div className={styles.blogCategorize}>
-                        <CategorizeItem text='Customer Success' />
-                        <CategorizeItem text='Gestão Comercial' />
-                        <CategorizeItem text='Inteligência Comercial' />
-                        <CategorizeItem text='Prospecção Outbound' />
-                        <CategorizeItem text='Vendas B2B' />
+                        {categorizeItems.map((x, index) => (
+                            <CategorizeItem key={index} text={x.text} to={x.to} />
+                        ))}
                     </div>
                 </div>
             </div>
