@@ -2,9 +2,9 @@
 
 import React, { FormEvent, useEffect, useState } from 'react'
 import AdminLayoutBase from '../AdminLayoutBase';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw, EditorProps } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Editor } from 'react-draft-wysiwyg';
+// import { Editor } from 'react-draft-wysiwyg';
 import './layout.css';
 import SubmitButton from '@/components/SubmitButton';
 import GrayArea from '@/components/GrayArea';
@@ -23,6 +23,14 @@ import { PaginatedList } from '@/interfaces/PaginatedList';
 import GroupedSelect from '@/components/Admin/GroupedSelect';
 import { PostDto } from '@/interfaces/PostDto';
 import BlogContent from '@/components/BlogContent';
+import { useSearchParams } from 'next/navigation';
+
+
+import dynamic from 'next/dynamic';
+const Editor = dynamic(
+  () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
+  { ssr: false }
+)
 
 export interface AddOrEditPostLayoutProps {
     mode: "add" | "edit";
@@ -48,8 +56,10 @@ function AddOrEditPostLayout({ mode } : AddOrEditPostLayoutProps) {
     totalCount: 0,
     totalPages: 0
   });
+  const searchParams = useSearchParams();
 
   const [categories, setCategories] = useState<string[]>([]);
+
 
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
 
@@ -112,8 +122,7 @@ function AddOrEditPostLayout({ mode } : AddOrEditPostLayoutProps) {
     formData.append('SummaryContent', summaryContent);
     formData.append('PublishNow', publishNow.toString());
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('id');
+    const postId = searchParams.get('id');
 
     const client = postClient();
     if (!postId) {
@@ -148,14 +157,14 @@ function extractWords(text: string, wordCount: number): string {
     });
   }, []);
 
+
   useEffect(() => {
     async function getPost() {
 
       if (mode != 'edit')
         return;
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const postId = urlParams.get('id');
+      const postId = searchParams.get('id');
       if (!postId) {
         messageService.error("Id da postagem inválido.").then(() => {
           router?.push("/admin/posts");
@@ -214,9 +223,7 @@ function extractWords(text: string, wordCount: number): string {
                 <GrayArea>
                     <SubmitButton text='Publicar' 
                                   onClick={ async () => {
-                                    debugger;
-                                    const urlParams = new URLSearchParams(window.location.search);
-                                    const postId = urlParams.get('id');
+                                    const postId = searchParams.get('id');
                                     if (!postId)
                                         return;
 

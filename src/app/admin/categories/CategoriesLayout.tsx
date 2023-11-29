@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import SubmitButton from '@/components/SubmitButton';
-import ButtonWithDropdown, { ButtonWithDropdownProps } from '@/components/ButtonWithDropdown';
+import ButtonWithDropdown, { DropdownButtonProps } from '@/components/ButtonWithDropdown';
 import AdminLayoutBase from '../AdminLayoutBase';
 import GrayArea from '@/components/GrayArea';
 import PersonalDataTable from '@/components/Admin/PersonalDataTable';
@@ -44,7 +44,7 @@ function CategoriesLayout() {
         setCategories(categoriesFromApi);
     }
 
-    const dropdownButtons : ButtonWithDropdownProps<CategoryDto>[] = [
+    const dropdownButtons : DropdownButtonProps<CategoryDto>[] = [
         { text: 'Editar', deleteflag: false, condition: (value) => true,
           onClick: (id: string) => {
                 router?.push(`/admin/categories/edit/?id=${id}`);
@@ -58,17 +58,17 @@ function CategoriesLayout() {
             } }
     ];
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const searchInputValue = formData.get(nameSearchInput) as string;
+    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+    //     const formData = new FormData(e.currentTarget);
+    //     const searchInputValue = formData.get(nameSearchInput) as string;
 
-        const url = new URL(window.location.href);
-        url.searchParams.set(searchParamName, searchInputValue);
-        window.history.pushState({}, '', url.toString());
+    //     const url = new URL(window.location.href);
+    //     url.searchParams.set(searchParamName, searchInputValue);
+    //     window.history.pushState({}, '', url.toString());
 
-        setSearchQuery(searchInputValue);
-      }
+    //     setSearchQuery(searchInputValue);
+    //   }
 
   return (
     <>
