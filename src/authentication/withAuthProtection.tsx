@@ -6,7 +6,7 @@ import { router } from '@/services/redirectService';
 import React, { ComponentType, useEffect, useState } from 'react';
 
 interface WithAuthenticationProps {
-  isAuthenticated: boolean; // Sua lógica de autenticação pode definir esse valor
+  isAuthenticated: boolean;
 }
 
 const withAuthentication = <P extends object>(
