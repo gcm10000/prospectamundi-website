@@ -10,6 +10,7 @@ import { setShowError } from '@/handlers/errorHandling';
 import { router } from '@/services/redirectService';
 import categoryClient from '@/network/lib/categoryClient';
 import GrayArea from '@/components/GrayArea';
+import { useSearchParams } from 'next/navigation';
 
 export interface AddOrEditCategoriesLayoutProps {
     mode: "add" | "edit";
@@ -20,6 +21,8 @@ function AddOrEditCategoriesLayout({ mode } : AddOrEditCategoriesLayoutProps) {
   const [slug, setSlug] = useState('');
   const [name, setName] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
+  const searchParams = useSearchParams();
+
 
   const handleTitleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
@@ -34,8 +37,7 @@ function AddOrEditCategoriesLayout({ mode } : AddOrEditCategoriesLayoutProps) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget as HTMLFormElement);
  
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryId = urlParams.get('id');
+    const categoryId = searchParams.get('id');
 
     const client = categoryClient();
     if (!categoryId) {
@@ -63,8 +65,7 @@ function AddOrEditCategoriesLayout({ mode } : AddOrEditCategoriesLayoutProps) {
       if (mode != 'edit')
         return;
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const categoryId = urlParams.get('id');
+      const categoryId = searchParams.get('id');
       if (!categoryId) {
         messageService.error("Id da categoria inválido.").then(() => {
           router?.push("/admin/categories");

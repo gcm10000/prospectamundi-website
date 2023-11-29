@@ -12,6 +12,7 @@ import { messageService } from '@/services/messageService';
 import { AuthService } from '@/services/authService';
 import { router } from '@/services/redirectService';
 import { AuthorDto } from '@/interfaces/AuthorDto';
+import { useSearchParams } from 'next/navigation';
 
 export interface AddOrEditUserLayoutProps {
     mode: 'fillProfile' | 'editOwnProfile' | 'editProfile';
@@ -22,6 +23,8 @@ function AddOrEditAuthorLayout({ mode }: AddOrEditUserLayoutProps) {
     const [lastName, setLastName] = useState('');
     const [bio, setBio] = useState('');
     const [imageURL, setImageURL] = useState('');
+    const searchParams = useSearchParams();
+
 
     useEffect(() => {
         async function getOwnProfile() {
@@ -32,8 +35,7 @@ function AddOrEditAuthorLayout({ mode }: AddOrEditUserLayoutProps) {
         }
 
         async function getProfile() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const authorId = urlParams.get('id');
+            const authorId = searchParams.get('id');
             if (!authorId) {
                 messageService.error("Id do autor inválido.");
                 router?.push("/admin/posts/");
@@ -89,8 +91,7 @@ function AddOrEditAuthorLayout({ mode }: AddOrEditUserLayoutProps) {
                 await messageService.success("Seu perfil foi atualizado com sucesso.");
             },
             'editProfile': async () => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const authorId = urlParams.get('id');
+                const authorId = searchParams.get('id');
                 if (!authorId) {
                     await messageService.error("Id do autor é inválido.");
                     router?.push("/admin/authors");

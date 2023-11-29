@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   return data;
 }
 
-export async function getPost(slug: string) {
+async function getPost(slug: string) {
   const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API;
   const endPointPost = baseURL + "blog/Post/" + slug;
   const response = await fetch(endPointPost, { cache: 'no-store' });
