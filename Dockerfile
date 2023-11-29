@@ -1,24 +1,23 @@
-# Estágio de construção
-FROM node:18-alpine AS builder
+# Usa uma imagem base com Node.js
+FROM node:latest
 
-# Define o diretório de trabalho
-WORKDIR /app
+# Cria e define o diretório de trabalho dentro do contêiner
+WORKDIR /usr/src/app
 
-# Copia os arquivos de configuração e as dependências para o contêiner
+# Copia os arquivos necessários para o contêiner (package.json e package-lock.json)
 COPY package*.json ./
+
+# Instala as dependências
 RUN npm install
 
-# Copia os arquivos do código-fonte para o contêiner
+# Copia o restante dos arquivos do projeto para o contêiner
 COPY . .
 
-# Constrói a aplicação Next.js
+# Constrói a aplicação
 RUN npm run build
 
-# Estágio de produção
-FROM nginx:alpine
+# Define a porta em que a aplicação vai rodar dentro do contêiner
+EXPOSE 3000
 
-# Copia os arquivos construídos do estágio de construção
-COPY --from=builder /app/out /usr/share/nginx/html
-
-# Expõe a porta 80
-EXPOSE 80
+# Comando para iniciar a aplicação quando o contêiner for iniciado
+CMD ["npm", "start"]

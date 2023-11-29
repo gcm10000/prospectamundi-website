@@ -19,7 +19,6 @@ function ServicesLayout() {
       };
 
     useEffect(() => {
-        document.title = "Serviços da Prospecta Mundi | Prospecta Mundi";
         setup();
       }, []);
 

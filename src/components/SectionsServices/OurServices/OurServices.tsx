@@ -48,7 +48,7 @@ const card1Array : Card1Props[] = [
     {
       icon: faPeopleGroup,
       title: 'Banco de talentos de SDR',
-      description: 'Encontre aqui um profissional de pré vendas qualificado e treinado com nossas metodologias.',
+      description: 'Encontre aqui um profissional de vendas qualificado e treinado com nossas metodologias.',
       footer: cardButtonFactory(3)
     }
   ];

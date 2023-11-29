@@ -4,6 +4,8 @@ import React from 'react';
 import './ContactSection.css'
 import { Button } from '../../Button';
 
+
+
 function ContactSection({ headline, to, buttonText } : { 
   headline: string,
   to: string,

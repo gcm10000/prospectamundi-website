@@ -7,23 +7,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faBars }  from '@fortawesome/free-solid-svg-icons';
 import ChipWithDropdown, { DropdownButtonProps } from '../ChipWithDropdown';
 import { AuthService } from '@/services/authService';
-import useSWR from 'swr';
-
+import { AuthorDto } from '@/interfaces/AuthorDto';
 
 function Navbar() {
   const [click, setClick] = useState(false);
   
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const [author, setAuthor] = useState<AuthorDto | null>(null);
 
+  useEffect(()=>{
+    const gettedAuthor = AuthService.getProfile();
+    setAuthor(gettedAuthor);
+  }, []);
 
-  const fetcher = async (url: string) => {
-    const author = AuthService.getProfile();
-    return author;
-  };
-  const { data: author, error } = useSWR('/api/profile', fetcher);
-
-  
   const firstName = author?.firstName;
   const imageURL = author?.profileImageUrl;
 
