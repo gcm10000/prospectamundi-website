@@ -3,12 +3,9 @@
 import React, { useState } from 'react';
 import './style.css';
 import { AuthService } from '@/services/authService';
-/*
-    "Username": "root@prospectamundi.com",
-    "Password": "SenhaSecreta@2022"
-*/
 
 function AdminLoginLayout() {
+  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   

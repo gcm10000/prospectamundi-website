@@ -21,7 +21,7 @@ export const AuthService = {
         const userService = currentUserService();
         const role = userService.getRole();
         if (role == RoleConstrants.root && userService.isFirstAccess()) {
-            router?.push("/admin/changePassword");
+            router?.push("/adminLogin//changePassword");
             return;
         }
 
