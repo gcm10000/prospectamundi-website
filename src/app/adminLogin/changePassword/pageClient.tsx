@@ -6,6 +6,7 @@ import currentUserService from '@/services/currentUserService';
 import accountClient from '@/network/lib/accountClient';
 import { messageService } from '@/services/messageService';
 import { setShowError } from '@/handlers/errorHandling';
+import { router } from '@/services/redirectService';
 
 function ChangePasswordClient() {
 
@@ -53,8 +54,10 @@ function ChangePasswordClient() {
 
         const client = accountClient();
         const result = await client.changeSudoPassword({ password });
-        if (result.status == 200)
+        if (result.status == 200) {
             messageService.success(`Alteração da senha do usuário '${email}' realizada com sucesso.`);
+            router?.push('/admin/posts');
+        }
     }
   
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {

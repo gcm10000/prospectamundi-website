@@ -26,6 +26,8 @@ async function getPost(slug: string) {
   const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
   const endPointPost = baseURL + "blog/Post/" + slug;
   const response = await fetch(endPointPost, { cache: 'no-store' });
+  console.log('endPointPost', endPointPost);
+  console.log('response', response);
   const post : PostDto = await response.json();
 
   return post;
@@ -59,6 +61,8 @@ export async function generateMetadata(
 }
 
 async function Post({ params: { slug }, searchParams }: Props) {
+
+    console.log('Trying to get post of slug ', slug);
 
     const post = await getPost(slug);
     const rawContentState = JSON.parse(post.content);
