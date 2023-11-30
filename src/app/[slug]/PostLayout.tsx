@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutBase from '../LayoutBlogBase';
+import LayoutBase from '../blog/LayoutBlogBase';
 import { PostDto } from '@/interfaces/PostDto';
 import BlogContent from '@/components/BlogContent';
 import { PaginatedList } from '@/interfaces/PaginatedList';

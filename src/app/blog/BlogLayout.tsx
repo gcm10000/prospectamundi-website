@@ -25,7 +25,7 @@ function BlogLayout({ paginatedPost, lastestPosts, categories } : {
     const data : CardBlogProps[] = paginatedPost.items
             .map(x => ({
                 title: x.title,
-                to: "/blog/" + x.slug,
+                to: x.slug,
                 author: x.authorName,
                 description: x.summaryContent,
                 imgSrc: x.imageURL,
