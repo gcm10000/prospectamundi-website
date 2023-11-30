@@ -10,17 +10,15 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export const dynamicParams = false;
-
-export async function generateStaticParams() {
-  const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
+// export async function generateStaticParams() {
+//   const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
   
-  const endpointSlugs = baseURL + "blog/Post/GetPostSlugs";
+//   const endpointSlugs = baseURL + "blog/Post/GetPostSlugs";
   
-  const response = await fetch(endpointSlugs, { cache: 'no-store' });
-  const data : string[] = await response.json();
-  return data;
-}
+//   const response = await fetch(endpointSlugs, { cache: 'no-store' });
+//   const data : string[] = await response.json();
+//   return data;
+// }
 
 async function getPost(slug: string) {
   const baseURL = process.env.NEXT_PUBLIC_APP_BASE_URL_API_SERVER_SIDE;
