@@ -116,7 +116,7 @@ function PostsLayout() {
 
       const redirectToPost = (slug: string) => {
         // router?.push(`/blog/${slug}`);
-        window.open(`/blog/${slug}`, '_blank');
+        window.open(`/${slug}`, '_blank');
       };
 
   return (
