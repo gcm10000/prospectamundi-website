@@ -6,6 +6,8 @@ import FooterSection from '@/components/FooterSection'
 import '@/components/Transictions/Transictions.css';
 import AnalyticsComponent from '@/components/AnalyticsComponent';
 import RedirectComponent from '@/components/RedirectComponent'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+
 
 export const metadata: Metadata = {
   title: 'Consultoria de Vendas Prospecta Mundi',
@@ -18,6 +20,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
+  const content = `
+      window.dataLayer = window.dataLayer || [];
+      gtag('js', new Date());
+
+      gtag('config', 'G-EHK3WWQML4');
+  `;
+
+  const createMarkup = () => {
+    return { __html: content };
+  };
+
   return (
     <html lang="pt-br">
       <head>
@@ -28,15 +41,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,100&display=swap"
           rel="stylesheet"
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHK3WWQML4"></script>
-        <script type='text/javascript' suppressHydrationWarning>
-            window.dataLayer = window.dataLayer || [];
-            gtag('js', new Date());
-
-            gtag('config', 'G-EHK3WWQML4');
-      </script>
       </head>
       <body>
+        <GoogleAnalytics />
         <RedirectComponent></RedirectComponent>
         <AnalyticsComponent></AnalyticsComponent>
         <Navbar></Navbar>
