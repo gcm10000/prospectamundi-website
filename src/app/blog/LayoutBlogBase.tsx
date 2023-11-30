@@ -32,7 +32,7 @@ function LayoutBase({
                 key: index,
                 title: x.title,
                 srcImg: x.imageURL,
-                to: "/blog/" + x.slug
+                to: x.slug
             }));
 
     const handleSubmit = async (event: FormEvent) => {
