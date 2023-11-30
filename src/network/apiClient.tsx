@@ -114,8 +114,8 @@ const axiosClient = axios.create({
       if (res.status == 401) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('authorProfile');
         window.location.href = "/adminLogin";
-        // messageService.error("Não autenticado");
         return Promise.reject(error);
       }
       
