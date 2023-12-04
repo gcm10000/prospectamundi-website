@@ -185,6 +185,7 @@
 
   @media screen and (max-width: 425px) {
     .distributedHeroContainerWrapper {
+        background: url('/images/image-13.jpg') center center/cover no-repeat;
         background-position-x: center;
     }
   }
