@@ -1,47 +1,16 @@
-"use client"
+import { Metadata } from "next";
+import VendasAmpliadasSucessoGarantidoClient from "./pageClient";
 
-import Card1 from '@/components/Card1/Card1';
-import DistributedContentHeroSection from '@/components/DistributedContainerHeroSection';
-import SectionFullWidth from '@/components/SectionFullWidth/SectionFullWidth';
-import setup from '@/components/Transictions/Transictions';
-import { faLightbulb, faChartLine, faCogs } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect } from 'react'
 
-function LandingPage() {
+export const metadata: Metadata = {
+    title: 'Vendas Ampliadas e Sucesso Garantido | Prospecta Mundi',
+    description: 'Descubra estratégias eficazes e práticas de vendas para impulsionar seu sucesso comercial.'
+  };
 
-    useEffect(() => {
-        window.addEventListener("load", (event) => {
-            // setup();
-        });
-        setup();
-    }, 
-    []);
-
+function VendasAmpliadasSucessoGarantido() {
   return (
-    <>
-        <DistributedContentHeroSection></DistributedContentHeroSection>
-        <SectionFullWidth style={{backgroundColor: '#33343F'}}>
-            <Card1 icon={faLightbulb} 
-                   iconSize='medium'
-                   title='Consultoria Especializada'
-                   description='Expertise que Transforma - Orientação especializada para potencializar suas vendas.' 
-                   style={{height: '270px'}}
-            />
-            <Card1 icon={faChartLine} 
-                   iconSize='medium'
-                   title='Análise Detalhada' 
-                   description='Revelando Oportunidades - Identificamos detalhes que impulsionam suas vendas.'  
-                   style={{height: '270px'}}
-            />
-            <Card1 icon={faCogs}
-                   iconSize='medium' 
-                   title='Estratégias Personalizadas' 
-                   description='Soluções à Sua Medida - Estratégias adaptadas para o crescimento do seu negócio.'
-                   style={{height: '270px'}}
-            />
-        </SectionFullWidth>
-    </>
+    <VendasAmpliadasSucessoGarantidoClient></VendasAmpliadasSucessoGarantidoClient>
   )
 }
 
-export default LandingPage;
+export default VendasAmpliadasSucessoGarantido;

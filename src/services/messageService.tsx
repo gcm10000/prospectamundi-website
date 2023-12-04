@@ -24,6 +24,16 @@ export const messageService = {
             confirmButtonText: <Button>Entendido</Button>,
             icon: 'error'
           });
+    },
+    errors: async (messages: string[]) => {
+        await Swal.fire({
+            title: '<strong>Erro</strong>',
+            html: messages.map(message => `<p>${message}</p>`).join(''),
+            buttonsStyling: false,
+            showCancelButton: false,
+            confirmButtonText: 'Entendido',
+            icon: 'error'
+          });
     }
 }
 
