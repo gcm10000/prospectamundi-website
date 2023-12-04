@@ -1,7 +1,6 @@
 "use client"
 
 import './HeroSectionContact.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare }  from '@fortawesome/free-solid-svg-icons';
 import SectionWithBlur, { Position } from '../SectionWithBlur/SectionWithBlur';
 import { useState, useEffect, FormEvent, ChangeEventHandler, ChangeEvent } from 'react';

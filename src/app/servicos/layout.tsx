@@ -4,7 +4,7 @@ import { Button } from '@/components/Button';
 import OurServices from '@/components/SectionsServices/OurServices/OurServices';
 import setup from '@/components/Transictions/Transictions';
 import React, { useEffect, useRef } from 'react'
-import '@/components/HeroSection.css';
+import '@/components/CenteredHeroSection/HeroSection.css';
 import '@/components/SectionsContact/HeroSectionContact.css'
 
 function ServicesLayout() {
