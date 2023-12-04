@@ -5,7 +5,6 @@ import DistributedContentHeroSection from '@/components/DistributedContainerHero
 import SectionFullWidth from '@/components/SectionFullWidth/SectionFullWidth';
 import setup from '@/components/Transictions/Transictions';
 import { faLightbulb, faChartLine, faCogs } from '@fortawesome/free-solid-svg-icons';
-import { height } from '@fortawesome/free-solid-svg-icons/faCloudArrowUp';
 import React, { useEffect } from 'react'
 
 function LandingPage() {
