@@ -31,8 +31,6 @@ function DistributedContentHeroSection() {
             await messageService.success('Dados enviados com sucesso.');
             return;
         }
-        console.log('errors', result.data);
-        await messageService.error('');
     }
 
     
