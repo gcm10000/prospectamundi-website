@@ -6,7 +6,7 @@ import OurValues from '@/components/SectionsAboutUs/OurValues/OurValues';
 import TargetAndVision from '@/components/SectionsAboutUs/TargetAndVision/TargetAndVision';
 import setup from '@/components/Transictions/Transictions';
 import React, { useEffect } from 'react';
-import '@/components/HeroSection.css';
+import '@/components/CenteredHeroSection/HeroSection.css';
 import '@/components/SectionsContact/HeroSectionContact.css'
 
 function AboutLayout() {
