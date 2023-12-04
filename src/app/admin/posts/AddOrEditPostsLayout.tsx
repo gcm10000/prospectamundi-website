@@ -190,7 +190,8 @@ function extractWords(text: string, wordCount: number): string {
       const newEditorState = EditorState.createWithContent(newContentState);
       setEditorState(newEditorState);
 
-      const html = draftToHtml(rawContentState);
+      let html = draftToHtml(rawContentState);
+      html = replaceEmptyPTagWithBrTa(html);
       setContentPreview(html);
     }
 
@@ -214,6 +215,10 @@ function extractWords(text: string, wordCount: number): string {
       const imageUrl = URL.createObjectURL(file);
       setImageName(imageUrl);
     };
+
+    function replaceEmptyPTagWithBrTa(htmlString: string) {
+      return htmlString.replaceAll(/<p><\/p>/gi, "<br/>");
+    }
 
   return (
     <form onSubmit={handleSubmit}>
