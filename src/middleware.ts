@@ -26,7 +26,9 @@ export async function middleware(request: NextRequest) {
     lastModified: new Date().toISOString(),
   }));
  
-  const staticRoutes : MetadataRoute.Sitemap = ["", "sobre", "servicos", "blog", "contato"].map((route) => ({
+  const routeNames = ["", "sobre", "servicos", "blog", "contato", "vendas-ampliadas-e-sucesso-garantido"];
+
+  const staticRoutes : MetadataRoute.Sitemap = routeNames.map((route) => ({
     url: `${URL}${route}`,
     lastModified: new Date().toISOString(),
   }));
