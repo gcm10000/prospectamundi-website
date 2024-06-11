@@ -19,7 +19,9 @@ jobs:
         # - uses: actions/setup-node@v2
       - name: Set up SSH key
         run: |
+            echo "The command mkdir -p ~/.ssh creates the ~/.ssh directory if it doesn't exist, ensuring all parent directories are also created."
             mkdir -p ~/.ssh
+            echo "Command executed."
             echo "$SSH_KEY" > ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
             ssh-keyscan -t rsa $SSH_HOST >> ~/.ssh/known_hosts
