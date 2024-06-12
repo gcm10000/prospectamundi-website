@@ -19,15 +19,45 @@ jobs:
         # - uses: actions/setup-node@v2
       - name: Set up SSH key
         run: |
-            echo "The command mkdir -p ~/.ssh creates the ~/.ssh directory if it doesn't exist, ensuring all parent directories are also created."
+            echo "Starting SSH key setup..."
+      
+            echo "Step 1: Creating the ~/.ssh directory."
             mkdir -p ~/.ssh
-            echo "Command executed."
+            if [ $? -ne 0 ]; then
+              echo "Error creating the ~/.ssh directory."
+              exit 1
+            fi
+            echo "Directory ~/.ssh created successfully."
+      
+            echo "Step 2: Writing SSH key to ~/.ssh/id_rsa."
             echo "$SSH_KEY" > ~/.ssh/id_rsa
+            if [ $? -ne 0 ]; then
+              echo "Error writing SSH key to ~/.ssh/id_rsa."
+              exit 1
+            fi
+            echo "SSH key written to ~/.ssh/id_rsa."
+      
+            echo "Step 3: Setting permissions on ~/.ssh/id_rsa."
             chmod 600 ~/.ssh/id_rsa
+            if [ $? -ne 0 ]; then
+              echo "Error setting permissions on ~/.ssh/id_rsa."
+              exit 1
+            fi
+            echo "Permissions set to 600 on ~/.ssh/id_rsa."
+      
+            echo "Step 4: Adding $SSH_HOST to known hosts."
             ssh-keyscan -t rsa $SSH_HOST >> ~/.ssh/known_hosts
+            if [ $? -ne 0 ]; then
+              echo "Error adding $SSH_HOST to known hosts."
+              exit 1
+            fi
+            echo "$SSH_HOST added to known hosts."
+      
+            echo "SSH key setup completed successfully."
         env:
             SSH_HOST: ${{ secrets.SSH_HOST }}
             SSH_KEY: ${{ secrets.SSH_KEY }}
+
     
     
       - name: Build Docker image
