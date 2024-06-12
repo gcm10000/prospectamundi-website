@@ -46,7 +46,7 @@ jobs:
             echo "Permissions set to 600 on ~/.ssh/id_rsa."
       
             echo "Step 4: Adding $SSH_HOST to known hosts."
-            ssh-keyscan -t rsa $SSH_HOST >> ~/.ssh/known_hosts
+            ssh-keyscan -v -t rsa $SSH_HOST >> ~/.ssh/known_hosts
             if [ $? -ne 0 ]; then
               echo "Error adding $SSH_HOST to known hosts."
               exit 1
